@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sorvete sem Segredo - Quiz</title>
+  <style>
+    :root {
+      --rosa: #fbb1bd;
+      --menta: #b8e0d2;
+      --creme: #fff5e1;
+      --lilas: #d6c1f5;
+      --chocolate: #8b5e3c;
+      --text-dark: #3e3e3e;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--creme);
+      color: var(--text-dark);
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .header img {
+      max-width: 180px;
+      height: auto;
+    }
+
+    .quiz-container {
+      max-width: 600px;
+      margin: 20px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      display: none;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.5s ease;
+    }
+
+    .quiz-container.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h2 {
+      margin-bottom: 30px;
+      font-size: 1.5rem;
+      color: var(--chocolate);
+      text-align: center;
+    }
+
+    .option {
+      display: block;
+      margin: 12px 0;
+      padding: 15px;
+      background: var(--menta);
+      color: #333;
+      text-align: center;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.3s;
+    }
+
+    .option:hover {
+      background: var(--rosa);
+      transform: scale(1.03);
+    }
+
+    .final img {
+      max-width: 100%;
+      margin: 15px 0;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .checkout-button {
+      background: var(--lilas);
+      padding: 15px 25px;
+      color: var(--text-dark);
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 25px;
+      border-radius: 10px;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .checkout-button:hover {
+      background: var(--rosa);
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 640px) {
+      .quiz-container {
+        margin: 10px;
+        padding: 20px;
+      }
+
+      h2 {
+        font-size: 1.2rem;
+      }
+
+      .option {
+        padding: 12px;
+        font-size: 0.95rem;
+      }
+
+      .checkout-button {
+        padding: 12px 20px;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <!-- Substitua o src abaixo pela sua logomarca -->
+<img src="images/logo.png" alt="Logo do Ebook" />
+</div>
+
+<div id="q1" class="quiz-container active">
+  <h2>Qual desses sabores melhor representa seu conhecimento em sorvetes?</h2>
+  <a class="option" onclick="nextQuestion('q2')">Baunilha – Começando agora</a>
+  <a class="option" onclick="nextQuestion('q2')">Chocolate – Já experimentei bastante</a>
+  <a class="option" onclick="nextQuestion('q2')">Morango – Aprendizado doce e crescente</a>
+  <a class="option" onclick="nextQuestion('q2')">Menta – Bem refrescado no assunto</a>
+</div>
+
+<div id="q2" class="quiz-container">
+  <h2>Você já tentou fazer sorvete em casa?</h2>
+  <a class="option" onclick="nextQuestion('q3')">Sim, e ficou ótimo!</a>
+  <a class="option" onclick="nextQuestion('q3')">Sim, mas não deu muito certo</a>
+  <a class="option" onclick="nextQuestion('q3')">Ainda não, mas quero</a>
+  <a class="option" onclick="nextQuestion('q3')">Nunca pensei nisso</a>
+</div>
+
+<div id="q3" class="quiz-container">
+  <h2>Você tem algum equipamento de cozinha específico?</h2>
+  <a class="option" onclick="nextQuestion('q4')">Tenho sorveteira</a>
+  <a class="option" onclick="nextQuestion('q4')">Só liquidificador</a>
+  <a class="option" onclick="nextQuestion('q4')">Geladeira + força de vontade</a>
+  <a class="option" onclick="nextQuestion('q4')">Pretendo comprar equipamentos</a>
+</div>
+
+<div id="q4" class="quiz-container">
+  <h2>Por que você quer aprender a fazer sorvete?</h2>
+  <a class="option" onclick="nextQuestion('final')">Para empreender</a>
+  <a class="option" onclick="nextQuestion('final')">Para consumo próprio</a>
+  <a class="option" onclick="nextQuestion('final')">Por hobby</a>
+  <a class="option" onclick="nextQuestion('final')">Para presentear ou vender</a>
+</div>
+
+<div id="final" class="quiz-container final">
+  <h2>Você está pronto para desvendar o segredo dos sorvetes!</h2>
+  <img src="https://via.placeholder.com/600x200/ffe1e6/3e3e3e?text=Ebook+Sorvete+sem+Segredo" alt="Ebook"/>
+  <img src="https://via.placeholder.com/600x200/c1f0dc/3e3e3e?text=Receitas+exclusivas+e+simples" alt="Receitas"/>
+  <p style="text-align: center; margin-top: 20px;">
+    Descubra como criar sorvetes incríveis com ingredientes simples e técnicas acessíveis.
+  </p>
+  <div style="text-align: center;">
+    <a class="checkout-button" href="https://seulinkdecheckout.com" target="_blank">
+      Adquirir o Ebook Agora
+    </a>
+  </div>
+</div>
+
+<script>
+  function nextQuestion(nextId) {
+    document.querySelectorAll('.quiz-container').forEach(el => el.classList.remove('active'));
+    const next = document.getElementById(nextId);
+    next.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
