@@ -45,14 +45,16 @@
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
       display: none;
       opacity: 0;
-      transform: translateY(30px);
+      transform: scale(0.98) translateY(20px);
+      pointer-events: none;
       transition: all 0.5s ease;
     }
 
     .quiz-container.active {
       display: block;
       opacity: 1;
-      transform: translateY(0);
+      transform: scale(1) translateY(0);
+      pointer-events: auto;
     }
 
     h2 {
@@ -131,7 +133,7 @@
 
 <div class="header">
   <!-- Substitua o src abaixo pela sua logomarca -->
-<img src="images/logo.png" alt="Logo do Ebook" />
+  <img src="images/logo.png" alt="Logo do Ebook" />
 </div>
 
 <div id="q1" class="quiz-container active">
@@ -176,10 +178,11 @@
 
 <div id="final" class="quiz-container final">
   <h2>Você está pronto para desvendar o segredo dos sorvetes!</h2>
-  <img src="https://via.placeholder.com/600x200/ffe1e6/3e3e3e?text=Ebook+Sorvete+sem+Segredo" alt="Ebook"/>
-  <img src="https://via.placeholder.com/600x200/c1f0dc/3e3e3e?text=Receitas+exclusivas+e+simples" alt="Receitas"/>
+  <img src="https://via.placeholder.com/600x200/ffe1e6/3e3e3e?text=Ebook+Sorvete+sem+Segredo" alt="Ebook" loading="lazy"/>
+  <img src="https://via.placeholder.com/600x200/c1f0dc/3e3e3e?text=Receitas+exclusivas+e+simples" alt="Receitas" loading="lazy"/>
   <p style="text-align: center; margin-top: 20px;">
-Descubra como criar momentos inesquecíveis com o eBook Sorvete sem Segredo — suas receitas podem virar parte das melhores memórias da sua família.  </p>
+    Descubra como criar momentos inesquecíveis com o eBook Sorvete sem Segredo — suas receitas podem virar parte das melhores memórias da sua família.
+  </p>
   <div style="text-align: center;">
     <a class="checkout-button" href="https://seulinkdecheckout.com" target="_blank">
       Adquirir o Ebook Agora
@@ -187,12 +190,46 @@ Descubra como criar momentos inesquecíveis com o eBook Sorvete sem Segredo — 
   </div>
 </div>
 
+<!-- Biblioteca de Confete -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
 <script>
   function nextQuestion(nextId) {
-    document.querySelectorAll('.quiz-container').forEach(el => el.classList.remove('active'));
-    const next = document.getElementById(nextId);
-    next.classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const allContainers = document.querySelectorAll('.quiz-container');
+    allContainers.forEach(el => el.classList.remove('active'));
+
+    setTimeout(() => {
+      const next = document.getElementById(nextId);
+      next.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Ativa confete se for a tela final
+      if (nextId === 'final') {
+        startConfetti();
+      }
+    }, 250);
+  }
+
+  function startConfetti() {
+    const duration = 3000;
+    const animationEnd = Date.now() + duration;
+    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 1000 };
+
+    const interval = setInterval(() => {
+      const timeLeft = animationEnd - Date.now();
+      if (timeLeft <= 0) {
+        return clearInterval(interval);
+      }
+
+      confetti({
+        ...defaults,
+        particleCount: 20,
+        origin: {
+          x: Math.random(),
+          y: Math.random() * 0.5
+        }
+      });
+    }, 250);
   }
 </script>
 
