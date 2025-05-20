@@ -229,11 +229,26 @@
         🎉 O seu desejo é especial para mim, então quero te dar um presente! Aproveite agora! 😍
       </p>
 
-    <div style="text-align: right; margin-top: 10px;">
-  <i style="font-size: 0.85rem;">
-    - Atenciosamente, Camila!
-  </i>
-</div>
+      <div style="text-align: right; margin-top: 10px;">
+        <i style="font-size: 0.85rem;">
+          - Atenciosamente, Camila!
+        </i>
+      </div>
+      <p></p>
+
+      <div id="offer-timer" style="
+      background: var(--rosa);
+      color: var(--text-dark);
+      padding: 12px;
+      border-radius: 8px;
+      text-align: center;
+      margin-bottom: 20px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  ">
+    ⏳ <strong>Oferta expira em:</strong> <span id="countdown">02:00:00</span>
+  </div>
 
       <div style="text-align: center; margin-top: 20px;">
         <a class="checkout-button" href="https://pay.kirvano.com/9aa58506-88d8-4680-93c5-42ddfb8b024f" target="_blank">
@@ -243,6 +258,7 @@
     </div>
   </div>
 </div>
+
 <!-- Biblioteca de Confete -->
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
@@ -300,8 +316,59 @@
       });
     });
   }
+
+  // Timer com localStorage (2 horas de countdown persistente)
+  function startPersistentCountdown() {
+    const timerElement = document.getElementById('countdown');
+    const offerDuration = 2 * 60 * 60 * 1000; // 2 horas em milissegundos
+    const now = new Date().getTime();
+    let storedEndTime = localStorage.getItem('offerEndTime');
+
+    // Se não existe, cria e salva
+    if (!storedEndTime) {
+      storedEndTime = now + offerDuration;
+      localStorage.setItem('offerEndTime', storedEndTime);
+    }
+
+    const endTime = parseInt(storedEndTime);
+
+    // Se o tempo salvo já passou, redefine
+    if (endTime <= now) {
+      localStorage.setItem('offerEndTime', now + offerDuration);
+      location.reload(); // Recarrega para sincronizar
+      return;
+    }
+
+    // Atualiza o timer a cada segundo
+    const interval = setInterval(() => {
+      const currentTime = new Date().getTime();
+      const remainingTime = endTime - currentTime;
+
+      if (remainingTime <= 0) {
+        clearInterval(interval);
+        timerElement.textContent = "Oferta expirada!";
+        localStorage.removeItem('offerEndTime'); // Limpa o cache
+        return;
+      }
+
+      // Calcula horas, minutos e segundos restantes
+      const hours = Math.floor(remainingTime / (1000 * 60 * 60));
+      const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+
+      // Formata para HH:MM:SS
+      const formattedTime = 
+        `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      
+      timerElement.textContent = formattedTime;
+    }, 1000);
+  }
+
+  // Inicia o timer ao carregar a página
+  document.addEventListener('DOMContentLoaded', () => {
+    startPersistentCountdown();
+  });
 </script>
 
 </body>
 </html>
-``` 
