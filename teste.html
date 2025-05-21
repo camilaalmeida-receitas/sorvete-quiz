@@ -137,26 +137,21 @@
         transform: translateX(100%);
       }
     }
+
+    @media (max-width: 640px) {
+  .final-flex {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .final-flex > div {
+    max-width: 100% !important;
+  }
+}
+
   </style>
   
-  <!-- Meta Pixel Code -->
-<script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1124624993037311'); 
-  fbq('track', 'PageView');
-</script>
-<noscript>
-  <img height="1" width="1" style="display:none"
-       src="https://www.facebook.com/tr?id=1124624993037311&ev=PageView&noscript=1"/>
-</noscript>
-<!-- End Meta Pixel Code -->
 
 </head>
 <body>
@@ -209,31 +204,39 @@
 <div id="final" class="quiz-container final">
   <h2>Você está pronto para desvendar o segredo dos sorvetes!</h2>
 
-  <div style="display: flex; flex-wrap: wrap; align-items: flex-start; gap: 30px; margin-top: 30px;">
-    <div style="flex: 1 1 200px; min-width: 250px;">
+  <!-- Container flex para imagem e primeiro parágrafo -->
+<div class="final-flex" style="display: flex; flex-wrap: wrap; gap: 30px; margin-bottom: 20px;">
+    <!-- Imagem à esquerda -->
+    <div style="flex: 0 0 40%; max-width: 250px;">
       <img src="images/pessoa.png" alt="Família feliz com sorvete" style="width: 100%; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" />
     </div>
 
-    <div style="flex: 2 1 200; min-width: 280px;">
-      <p style="font-size: 1rem; line-height: 1.6;">
-        <strong>“Eu também queria mais do que só uma sobremesa...”</strong>
+    <!-- Primeiro parágrafo à direita -->
+    <div style="flex: 1;">
+      <p style="font-size: 1rem; line-height: 1.6; margin-top: 0;">
+        <strong>"Eu também queria mais do que só uma sobremesa..."</strong>
       </p>
       <p style="line-height: 1.6;">Quando comecei a fazer sorvetes em casa, meu maior desejo era ver minha família reunida, sorrindo, criando memórias simples — mas marcantes. Foi nesse momento que percebi: receitas podem ir muito além do sabor. Elas criam conexão, acolhimento e afeto.</p>
+    </div>
+  </div>
 
-      <p style="line-height: 1.6;">Assim nasceu o <strong>Sorvete sem Segredo</strong>: um eBook feito para transformar a sua cozinha em um espaço de encontros inesquecíveis. Ele oferece:</p>
+  <!-- Restante do conteúdo em largura total -->
+  <div style="width: 100%;">
+    <p style="line-height: 1.6;">Assim nasceu o <strong>Sorvete sem Segredo</strong>: um eBook feito para transformar a sua cozinha em um espaço de encontros inesquecíveis. Ele oferece:</p>
 
-      <div style="margin: 25px 0; padding: 20px; background: var(--menta); border-radius: 14px; line-height: 1.8;">
-        <p>🍦 <strong>Receitas simples, práticas e testadas para qualquer nível.</strong></p>
-        <p>👨‍👩‍👧‍👦 <strong>Inspiração para criar momentos especiais em família.</strong></p>
-        <p>⏱️ <strong>Preparo rápido com poucos ingredientes.</strong></p>
-        <p>❄️ <strong>Funciona com ou sem sorveteira.</strong></p>
-      </div>
+    <div style="margin: 25px 0; padding: 20px; background: var(--menta); border-radius: 14px; line-height: 1.8;">
+      <p>🍦 <strong>Receitas simples, práticas e testadas para qualquer nível.</strong></p>
+      <p>👨‍👩‍👧‍👦 <strong>Inspiração para criar momentos especiais em família.</strong></p>
+      <p>⏱️ <strong>Preparo rápido com poucos ingredientes.</strong></p>
+      <p>❄️ <strong>Funciona com ou sem sorveteira.</strong></p>
+    </div>
 
-      <p style="line-height: 1.6;">Se você chegou até aqui, é porque também valoriza esses momentos. E acredite: não é preciso ser chef para encantar sua família com sabores incríveis — só é preciso um pouco de vontade… e as receitas certas.</p>
+    <!-- Restante do conteúdo permanece igual -->
+    <p style="line-height: 1.6;">Se você chegou até aqui, é porque também valoriza esses momentos. E acredite: não é preciso ser chef para encantar sua família com sabores incríveis — só é preciso um pouco de vontade… e as receitas certas.</p>
 
-      <p style="text-align: center; font-size: 1.2rem; margin-top: 30px;">
-        💛 <strong>Vamos dar o primeiro passo juntos?</strong>
-      </p>
+    <p style="text-align: center; font-size: 1.2rem; margin-top: 30px;">
+      💛 <strong>Vamos dar o primeiro passo juntos?</strong>
+    </p>
 
       <p style="font-size: 0.85rem; color: #cc0000; font-weight: bold; text-align: center; margin-top: 10px;">
         🎉 O seu desejo é especial para mim, então quero te dar um presente! Aproveite agora! 😍
@@ -296,6 +299,13 @@
         </div>
       </div>
       <!-- FIM DO NOVO TIMER -->
+
+      <div style="background: #fff8f0; border: 2px dashed #f4b183; padding: 20px; border-radius: 16px; margin-top: 30px; text-align: center; box-shadow: 0 0 8px rgba(0,0,0,0.03);">
+  <p style="font-size: 1rem; color: #7a4e27; margin: 0;">
+    💡 <strong>Garantia incondicional:</strong><br>
+    Se você não amar as receitas, devolvemos seu investimento em até <strong>7 dias</strong>, sem complicações.
+  </p>
+</div>
 
       <div style="text-align: center; margin-top: 20px;">
         <a class="checkout-button" href="https://pay.kirvano.com/9aa58506-88d8-4680-93c5-42ddfb8b024f" target="_blank">
