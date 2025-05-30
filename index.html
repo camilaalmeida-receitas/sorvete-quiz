@@ -451,16 +451,6 @@
     if (parts.length === 2) return parts.pop().split(";").shift();
   }
 
-  const checkoutButton = document.querySelector('.checkout-button');
-  if (checkoutButton) {
-    checkoutButton.addEventListener('click', function () {
-      const fbc = getCookie('_fbc');
-      fbq('track', 'InitiateCheckout', {
-        fbc: fbc || null
-      });
-    });
-  }
-
   // Timer com localStorage (2 horas de countdown persistente)
   function startPersistentCountdown() {
     const timerElement = document.getElementById('countdown');
