@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sorvete sem Segredo - Quiz</title>
+  <title>Sorvete sem Segredo</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
@@ -88,7 +88,6 @@
       max-width: 100%;
       margin: 15px 0;
       border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
     .checkout-button {
@@ -127,6 +126,17 @@
         padding: 12px 20px;
         font-size: 1rem;
       }
+
+      #depoimentos {
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        padding: 0 10px;
+      }
+
+      .depo-square {
+        margin-bottom: 6px;
+      }
     }
 
     @keyframes shimmer {
@@ -150,27 +160,23 @@
   }
 }
 
+.depo-square {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--menta);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  transition: transform 0.15s;
+}
+.depo-square:hover {
+  transform: scale(1.08);
+  background: var(--rosa);
+}
   </style>
-  
-    <!-- Meta Pixel Code -->
-<script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1124624993037311'); 
-  fbq('track', 'PageView');
-</script>
-<noscript>
-  <img height="1" width="1" style="display:none"
-       src="https://www.facebook.com/tr?id=1124624993037311&ev=PageView&noscript=1"/>
-</noscript>
-<!-- End Meta Pixel Code -->
-
 
 </head>
 <body>
@@ -190,14 +196,29 @@
 
 <div id="q2" class="quiz-container">
   <h2>Se você pudesse criar uma nova tradição familiar, o que ela incluiria?</h2>
-  <a class="option" onclick="nextQuestion('q3')">Preparar receitas juntos nos finais de semana</a>
-  <a class="option" onclick="nextQuestion('q3')">Ter uma sobremesa especial feita em casa</a>
-  <a class="option" onclick="nextQuestion('q3')">Ensinar os filhos a cozinhar</a>
-  <a class="option" onclick="nextQuestion('q3')">Reunir todos para momentos especiais à mesa</a>
+  <a class="option" onclick="nextQuestion('narrativa1')">Preparar receitas juntos nos finais de semana</a>
+  <a class="option" onclick="nextQuestion('narrativa1')">Ter uma sobremesa especial feita em casa</a>
+  <a class="option" onclick="nextQuestion('narrativa1')">Ensinar os filhos a cozinhar</a>
+  <a class="option" onclick="nextQuestion('narrativa1')">Reunir todos para momentos especiais à mesa</a>
+</div>
+
+<div id="narrativa1" class="quiz-container">
+  <h2>Você consegue imaginar a cena?</h2>
+  <img src="images/fotonarrativa1.jpg" alt="Família reunida com sorvete" style="display:block; margin:0 auto 22px auto; max-width:260px; border-radius:14px; box-shadow:0 4px 12px rgba(0,0,0,0.10);" />
+  <p>
+    As <strong>lembranças</strong> mais marcantes da infância e os momentos que sonhamos viver em família têm algo em comum: eles nascem de experiências simples, mas cheias de afeto.
+  </p>
+  <p>
+    E se uma receita pudesse se <strong>transformar</strong> em um ritual gostoso, esperado por todos, semana após semana?
+  </p>
+  <p>
+    Criar tradições não precisa ser complicado — pode começar com um sabor, um gesto, um <strong>momento</strong> só de vocês.
+  </p>
+  <a class="option" onclick="nextQuestion('q3')">Me mostra como!</a>
 </div>
 
 <div id="q3" class="quiz-container">
-  <h2>Como você se sentiria ao ver sua família pedindo aquele seu sorvete especial toda semana?</h2>
+  <h2>Sendo assim, como você se sentiria ao ver sua família pedindo aquele seu sorvete especial toda semana?</h2>
   <a class="option" onclick="nextQuestion('q4')">Orgulhosa por fazer algo delicioso</a>
   <a class="option" onclick="nextQuestion('q4')">Feliz por unir a família ao redor da mesa</a>
   <a class="option" onclick="nextQuestion('q4')">Realizado(a) por criar momentos únicos</a>
@@ -205,7 +226,7 @@
 </div>
 
 <div id="q4" class="quiz-container">
-  <h2>Você gostaria de ter acesso a receitas de sorvetes artesanais que encantam adultos e crianças e podem virar uma tradição na sua casa?</h2>
+  <h2>Você gostaria de ter acesso as receitas de sorvetes caseiros que encantam a todos e podem virar uma tradição na sua casa?</h2>
   <a class="option" onclick="nextQuestion('q5')">Sim, com certeza!</a>
   <a class="option" onclick="nextQuestion('q5')">Claro, adoro fazer receitas especiais</a>
   <a class="option" onclick="nextQuestion('q5')">Talvez, se forem fáceis e gostosas</a>
@@ -213,7 +234,7 @@
 </div>
 
 <div id="q5" class="quiz-container">
-  <h2>Eu vou te mostrar receitas que podem ser feitas em casa, de forma fácil, rápida e sem precisar de muito. Mas por dúvida, o que você teria aí na sua casa?</h2>
+  <h2>Então vou te mostrar receitas que podem ser feitas em casa, de forma fácil, rápida e sem precisar de muito. Mas por dúvida, o que você teria aí na sua casa?</h2>
   <a class="option" onclick="nextQuestion('final')">Tenho sorveteira</a>
   <a class="option" onclick="nextQuestion('final')">Só liquidificador</a>
   <a class="option" onclick="nextQuestion('final')">Geladeira + força de vontade</a>
@@ -221,119 +242,148 @@
 </div>
 
 <div id="final" class="quiz-container final">
-  <h2>Você está pronto para desvendar o segredo dos sorvetes!</h2>
-
   <!-- Container flex para imagem e primeiro parágrafo -->
-<div class="final-flex" style="display: flex; flex-wrap: wrap; gap: 30px; margin-bottom: 20px;">
+  <div class="final-flex" style="display: flex; flex-wrap: wrap; gap: 30px; margin-bottom: 20px;">
     <!-- Imagem à esquerda -->
     <div style="flex: 0 0 40%; max-width: 250px;">
       <img src="images/pessoa.png" alt="Família feliz com sorvete" style="width: 100%; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" />
     </div>
-
     <!-- Primeiro parágrafo à direita -->
     <div style="flex: 1;">
       <p style="font-size: 1rem; line-height: 1.6; margin-top: 0;">
         <strong>"Eu também queria mais do que só uma sobremesa..."</strong>
       </p>
-      <p style="line-height: 1.6;">Quando comecei a fazer sorvetes em casa, meu maior desejo era ver minha família reunida, sorrindo, criando memórias simples — mas marcantes. Foi nesse momento que percebi: receitas podem ir muito além do sabor. Elas criam conexão, acolhimento e afeto.</p>
+      <p style="line-height: 1.6;">Quando comecei a fazer sorvetes em casa, meu maior desejo era ver minha família reunida, sorrindo, criando memórias simples — mas marcantes. Foi nesse momento que percebi que receitas podem ir muito além do sabor. Elas criam <strong>conexão, acolhimento e afeto</strong>.</p>
     </div>
   </div>
-
-  <!-- Restante do conteúdo em largura total -->
-  <div style="width: 100%;">
-    <p style="line-height: 1.6;">Assim nasceu o <strong>Sorvete sem Segredo</strong>: um eBook feito para transformar a sua cozinha em um espaço de encontros inesquecíveis. Ele oferece:</p>
-
-    <div style="margin: 25px 0; padding: 20px; background: var(--menta); border-radius: 14px; line-height: 1.8;">
+  <!-- Transição suave com perguntas reflexivas -->
+  <p style="line-height: 1.6; margin-bottom: 20px;">
+    E você? Já sentiu aquele <strong>calor no coração</strong> ao ver alguém elogiando um doce que você preparou? Ou a <strong>vontade de transformar</strong> um dia comum em algo especial, mesmo sem muito tempo ou ingredientes complicados?
+  </p>
+  <!-- Apresentação do eBook como solução natural -->
+  <p style="line-height: 1.6;">
+    Foi pensando em <strong>todos esses sentimentos</strong> que criei o <strong>Sorvete sem Segredo</strong>: um eBook feito para ajudar você a transformar sua cozinha em um <strong>cantinho de memórias doces</strong>, sem precisar de experiência ou equipamentos caros.
+  </p>
+  <div style="margin: 25px 0; padding: 20px; background: var(--menta); border-radius: 14px; line-height: 1.8;">
       <p>🍦 <strong>Receitas simples, práticas e testadas para qualquer nível.</strong></p>
       <p>👨‍👩‍👧‍👦 <strong>Inspiração para criar momentos especiais em família.</strong></p>
       <p>⏱️ <strong>Preparo rápido com poucos ingredientes.</strong></p>
       <p>❄️ <strong>Funciona com ou sem sorveteira.</strong></p>
     </div>
-
-    <!-- Restante do conteúdo permanece igual -->
-    <p style="line-height: 1.6;">Se você chegou até aqui, é porque também valoriza esses momentos. E acredite: não é preciso ser chef para encantar sua família com sabores incríveis — só é preciso um pouco de vontade… e as receitas certas.</p>
-
-    <p style="text-align: center; font-size: 1.2rem; margin-top: 30px;">
-      💛 <strong>Vamos dar o primeiro passo juntos?</strong>
-    </p>
-
-      <p style="font-size: 0.85rem; color: #cc0000; font-weight: bold; text-align: center; margin-top: 10px;">
-        🎉 O seu desejo é especial para mim, então quero te dar um presente! Aproveite agora! 😍
-      </p>
-
-      <div style="text-align: right; margin-top: 10px;">
-        <i style="font-size: 0.85rem;">
-          - Atenciosamente, Camila!
-        </i>
-      </div>
-      <p></p>
-
-      <!-- NOVO TIMER ESTILIZADO -->
-      <div id="offer-timer" style="
-          background: linear-gradient(135deg, var(--rosa) 0%, #ff6b6b 100%);
-          color: white;
-          padding: 15px;
-          border-radius: 12px;
-          text-align: center;
-          margin: 20px 0;
-          font-weight: 700;
-          font-size: 1.1rem;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-          border: 2px solid white;
-          position: relative;
-          overflow: hidden;
-      ">
-        <div style="
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                rgba(255,255,255,0.1) 0%, 
-                rgba(255,255,255,0.3) 50%, 
-                rgba(255,255,255,0.1) 100%);
-            animation: shimmer 2s infinite;
-        "></div>
-        
-        <div style="position: relative; z-index: 2;">
-          <div style="font-size: 0.9rem; margin-bottom: 5px;">
-            ⏳ <strong>OFERTA COM DESCONTO DE 50% - APENAS R$24,90!</strong>
-          </div>
-          <div id="countdown" style="
-              font-size: 1.5rem;
-              font-weight: 700;
-              letter-spacing: 1px;
-              background: rgba(0,0,0,0.2);
-              padding: 8px 12px;
-              border-radius: 8px;
-              display: inline-block;
-              margin: 5px 0;
-          ">
-            02:00:00
-          </div>
-          <div style="font-size: 0.85rem;">
-            Esta oferta expira em breve! Não perca!
-          </div>
-        </div>
-      </div>
-      <!-- FIM DO NOVO TIMER -->
-
-  
-
-      <div style="background: #fff8f0; border: 2px dashed #f4b183; padding: 20px; border-radius: 16px; margin-top: 30px; text-align: center; box-shadow: 0 0 8px rgba(0,0,0,0.03);">
-  <p style="font-size: 1rem; color: #7a4e27; margin: 0;">
-    💡 <strong>Garantia incondicional:</strong><br>
-    Se você não amar as receitas, devolvemos seu investimento em até <strong>7 dias</strong>, sem complicações.
+  <!-- Conclusão emocional -->
+  <p style="line-height: 1.6;">
+    Se você chegou até aqui, é porque também acredita que <strong>os melhores dias</strong> são feitos de pequenas alegrias — e eu quero te ajudar a criá-las. Não é preciso ser um chef, só alguém que, como eu, entende que <strong>o sorvete é só a desculpa</strong>... o verdadeiro sabor está no <strong>tempo compartilhado</strong>.
   </p>
+  <p style="text-align: center; font-size: 1.2rem; margin: 30px 0 20px;">
+    💛 <strong>Vamos começar essa doce jornada?</strong>
+  </p>
+  <!-- Depoimentos dos clientes -->
+  <div style="text-align: center; font-size: 0.93rem; color: #888; margin-bottom: 6px;">
+    <span style="font-size: 0.93rem;">Clique em uma foto para ler o depoimento</span>
+  </div>
+  <div id="depoimentos" style="display: flex; justify-content: center; gap: 12px; margin-bottom: 24px;">
+    <div class="depo-square" data-msg="O melhor eBook de receitas que já comprei! Minha família amou. 💖 — Ana">
+      <img src="images/cliente1.png" alt="Ana" style="width:40px; height:40px; border-radius:10px;">
+    </div>
+    <div class="depo-square" data-msg="Fiz sorvete sem sorveteira e ficou perfeito! Recomendo demais. 🍦 — João">
+      <img src="images/cliente2.png" alt="João" style="width:40px; height:40px; border-radius:10px;">
+    </div>
+    <div class="depo-square" data-msg="Receitas fáceis, rápidas e deliciosas. Virou tradição aqui em casa! — Carla">
+      <img src="images/cliente3.png" alt="Carla" style="width:40px; height:40px; border-radius:10px;">
+    </div>
+    <div class="depo-square" data-msg="Nunca imaginei que seria tão simples fazer sorvete gostoso em casa. Amei! 😍 — Iara">
+      <img src="images/cliente4.png" alt="Iara" style="width:40px; height:40px; border-radius:10px;">
+    </div>
+    <div class="depo-square" data-msg="Minhas crianças pedem toda semana! Virou nosso momento favorito. 👨‍👩‍👧‍👦 — Paula">
+      <img src="images/cliente5.png" alt="Paula" style="width:40px; height:40px; border-radius:10px;">
+    </div>
+    <div class="depo-square" data-msg="Comprei para eu e minha esposa fazermos com nossos filhos. Recomendo para todos! ⭐️⭐️⭐️⭐️⭐️ — Bruno">
+      <img src="images/cliente6.png" alt="Bruno" style="width:40px; height:40px; border-radius:10px;">
+    </div>
+    <div class="depo-square" data-msg="O eBook me surpreendeu, receitas deliciosas e fáceis de adaptar. — Fernanda">
+      <img src="images/cliente7.png" alt="Fernanda" style="width:40px; height:40px; border-radius:10px;">
+    </div>
+    <div class="depo-square" data-msg="Agora faço sorvete até para presentear amigos. Todo mundo elogia! 🎁 — Rafaela">
+      <img src="images/cliente8.png" alt="Rafaela" style="width:40px; height:40px; border-radius:10px;">
+    </div>
+  </div>
+  <div id="depo-balao" style="display:none; max-width:320px; margin:0 auto 18px auto; background:#fff; border-radius:18px; border:2px solid var(--menta); padding:18px; box-shadow:0 2px 12px rgba(0,0,0,0.08); position:relative; text-align:center;">
+    <span id="depo-msg"></span>
+    <span onclick="document.getElementById('depo-balao').style.display='none'" style="position:absolute;top:8px;right:14px;cursor:pointer;font-weight:bold;">×</span>
+  </div>
+
+  <!-- TIMER DA OFERTA -->
+  <div id="offer-timer" style="
+      background: linear-gradient(135deg, var(--rosa) 0%, #ff6b6b 100%);
+      color: white;
+      padding: 15px;
+      border-radius: 12px;
+      text-align: center;
+      margin: 20px 0;
+      font-weight: 700;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      border: 2px solid white;
+      position: relative;
+      overflow: hidden;
+  ">
+    <div style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, 
+            rgba(255,255,255,0.1) 0%, 
+            rgba(255,255,255,0.3) 50%, 
+            rgba(255,255,255,0.1) 100%);
+        animation: shimmer 2s infinite;
+    "></div>
+    
+    <div style="position: relative; z-index: 2;">
+      <div style="font-size: 1.2rem; margin-bottom: 5px;">
+        ⏳ <strong>OFERTA COM DESCONTO DE 50%!</strong>
+      </div>
+      <div id="countdown" style="
+          font-size: 1.5rem;
+          font-weight: 700;
+          letter-spacing: 1px;
+          background: rgba(0,0,0,0.2);
+          padding: 8px 12px;
+          border-radius: 8px;
+          display: inline-block;
+          margin: 5px 0;
+      ">
+        02:00:00
+      </div>
+      <div style="font-size: 0.85rem;">
+        Esta oferta expira em breve! Não perca!
+      </div>
+    </div>
+  </div>
+  <!-- FIM DO TIMER -->
+
+  <!-- GARANTIA DE 7 DIAS -->
+  <div style="background: #fff8f0; border: 2px dashed #f4b183; padding: 20px; border-radius: 16px; margin-top: 30px; text-align: center; box-shadow: 0 0 8px rgba(0,0,0,0.03);">
+    <p style="font-size: 1rem; color: #7a4e27; margin: 0;">
+      💡 <strong>Garantia incondicional:</strong><br>
+      Se você não amar as receitas, devolvemos seu investimento em até <strong>7 dias</strong>, sem complicações.
+    </p>
+  </div>
+  <!-- FIM DA GARANTIA -->
+
+  <!-- Valor do produto destacado -->
+<div style="background: #fffbe7; color: #b85c00; font-size: 1.5rem; font-weight: bold; border-radius: 14px; padding: 18px 0; margin: 30px auto 10px auto; max-width: 350px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); text-align: center; border: 2px solid #ffe2a0;">
+  🎉 <span style="font-size:1.2rem;">De <s>R$49,90</s> por apenas</span><br>
+  <span style="font-size:2.1rem; color:#ff6b00;">R$24,90</span>
 </div>
 
-      <div style="text-align: center; margin-top: 20px;">
+  <!-- Botão de checkout -->
+  <div style="text-align: center; margin-top: 20px;">
         <a class="checkout-button" href="https://pay.kirvano.com/9aa58506-88d8-4680-93c5-42ddfb8b024f" target="_blank">
           👉 Garantir meu eBook com desconto agora!
         </a>
-
-        <iframe src="https://1drv.ms/b/c/adacdc64ec005f26/IQS9RUzbxdbuSJQzl5U2iU0yAXQqPwZcOKcpoGt2plsTmc4" width="200" height="500" frameborder="0" scrolling="no"></iframe>
+          <img src="images/socialproof.png" alt="Pessoas que já compraram" style="max-width: 320px; width: 100%" />
       </div>
     </div>
   </div>
@@ -387,16 +437,6 @@
     if (parts.length === 2) return parts.pop().split(";").shift();
   }
 
-  const checkoutButton = document.querySelector('.checkout-button');
-  if (checkoutButton) {
-    checkoutButton.addEventListener('click', function () {
-      const fbc = getCookie('_fbc');
-      fbq('track', 'InitiateCheckout', {
-        fbc: fbc || null
-      });
-    });
-  }
-
   // Timer com localStorage (2 horas de countdown persistente)
   function startPersistentCountdown() {
     const timerElement = document.getElementById('countdown');
@@ -448,6 +488,22 @@
   document.addEventListener('DOMContentLoaded', () => {
     startPersistentCountdown();
   });
+
+  document.querySelectorAll('.depo-square').forEach(function(el) {
+  el.addEventListener('click', function() {
+    document.getElementById('depo-msg').textContent = el.getAttribute('data-msg');
+    document.getElementById('depo-balao').style.display = 'block';
+  });
+});
+
+// Deixe o depoimento da Ana aberto ao carregar a página
+window.addEventListener('DOMContentLoaded', function() {
+  var primeiroDepo = document.querySelector('.depo-square');
+  if (primeiroDepo) {
+    document.getElementById('depo-msg').textContent = primeiroDepo.getAttribute('data-msg');
+    document.getElementById('depo-balao').style.display = 'block';
+  }
+});
 </script>
 
 </body>
