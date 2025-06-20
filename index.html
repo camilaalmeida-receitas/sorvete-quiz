@@ -29,11 +29,11 @@
 
     .header {
       text-align: center;
-      padding: 20px;
+      padding: 10px;
     }
 
     .header img {
-      max-width: 180px;
+      max-width: 100px;
       height: auto;
     }
 
@@ -84,6 +84,81 @@
       transform: scale(1.03);
     }
 
+    /* CARROSSEL ATUALIZADO (Código 2 integrado) */
+    .depo-slide {
+      display: none;
+      text-align: center;
+      padding: 30px 20px;
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      margin: 0 auto;
+      max-width: 600px;
+      transition: opacity 0.4s ease;
+    }
+
+    .depo-slide.active {
+      display: block;
+      opacity: 1;
+    }
+
+        .depo-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    .depo-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--menta);
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      flex-shrink: 0;
+    }
+
+    .depo-info {
+      flex-grow: 1;
+    }
+
+    .depo-stars {
+      font-size: 1.2rem;
+      color: #fbc02d;
+      letter-spacing: 2px;
+      margin-bottom: 5px;
+    }
+
+    .depo-author {
+      font-weight: bold;
+      color: var(--chocolate);
+      margin-top: 5px;
+    }
+
+    .depo-text {
+      font-style: italic;
+      line-height: 1.6;
+      text-align: left;
+      padding: 0 10px;
+    }
+
+    #depo-carousel button {
+      background: var(--menta);
+      border: none;
+      border-radius: 8px;
+      padding: 10px 18px;
+      margin: 10px 8px 0 8px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    #depo-carousel button:hover {
+      background: var(--rosa);
+    }
+
     .final img {
       max-width: 100%;
       margin: 15px 0;
@@ -126,17 +201,6 @@
         padding: 12px 20px;
         font-size: 1rem;
       }
-
-      #depoimentos {
-        flex-wrap: wrap;
-        gap: 10px;
-        justify-content: center;
-        padding: 0 10px;
-      }
-
-      .depo-square {
-        margin-bottom: 6px;
-      }
     }
 
     @keyframes shimmer {
@@ -149,95 +213,49 @@
     }
 
     @media (max-width: 640px) {
-  .final-flex {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
+      .final-flex {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
 
-  .final-flex > div {
-    max-width: 100% !important;
-  }
-}
-
-.depo-square {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: var(--menta);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  transition: transform 0.15s;
-}
-.depo-square:hover {
-  transform: scale(1.08);
-  background: var(--rosa);
-}
+      .final-flex > div {
+        max-width: 100% !important;
+      }
+    }
   </style>
 
-    <!-- Meta Pixel Code -->
-<script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1124624993037311'); 
-  fbq('track', 'PageView');
-</script>
-<noscript>
-  <img height="1" width="1" style="display:none"
-       src="https://www.facebook.com/tr?id=1124624993037311&ev=PageView&noscript=1"/>
-</noscript>
-<!-- End Meta Pixel Code -->
-
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1124624993037311'); 
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+         src="https://www.facebook.com/tr?id=1124624993037311&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- End Meta Pixel Code -->
 </head>
 <body>
 
 <div class="header">
-  <!-- Substitua o src abaixo pela sua logomarca -->
   <img src="images/logo.png" alt="Logo do Ebook" />
 </div>
 
 <div id="intro" class="quiz-container active">
-
-<h2>Tenho CERTEZA: a partir de hoje você nunca mais vai errar no sorvete!</h2>  
-
   <div style="text-align: center; margin: 30px auto;">
-    <img src="images/intro.png" alt="Sorvete Caseiro Perfeito" style="width: 100%; border-radius: 12px;" />
+    <img src="images/intro2.gif" alt="Sorvete Caseiro Perfeito" style="width: 80%; border-radius: 12px;" />
   </div>
 
-  <p style="text-align: center; margin-bottom: 25px; line-height: 1.6; font-size: 1.1rem;">
-    <strong>Chega de gastar dinheiro</strong> com potes pequenos de sorvete! 
-    Aprenda a fazer sorvetes deliciosos em casa, com:
-  </p>
-
-  <ul style="list-style: none; padding: 0; margin: 0 0 30px 0;">
-    <li style="margin: 12px 0; padding-left: 25px; position: relative;">
-      ✨ Textura cremosa e profissional
-    </li>
-    <li style="margin: 12px 0; padding-left: 25px; position: relative;">
-      ✨ Sabor natural e equilibrado
-    </li>
-    <li style="margin: 12px 0; padding-left: 25px; position: relative;">
-      ✨ Ingredientes simples e acessíveis
-    </li>
-    <li style="margin: 12px 0; padding-left: 25px; position: relative;">
-      ✨ Método testado e aprovado
-    </li>
-  </ul>
-
-    <p style="text-align: center; margin-bottom: 25px; line-height: 1.6; font-size: 1.1rem;">
-    Faça isso e você <strong>NUNCA MAIS ficará com aquela vontade DE QUERER MAIS!</strong>
-  </p>
-
-  <a class="option" onclick="nextQuestion('q1')" style="background: var(--rosa); font-size: 1.2rem; padding: 20px;">
+  <a class="option" onclick="nextQuestion('q1')" style="background: var(--rosa); font-size: 1.0rem; padding: 20px;">
     QUERO DESCOBRIR AGORA! 🍦
   </a>
 
@@ -247,76 +265,70 @@
 </div>
 
 <div id="q1" class="quiz-container">
-  <h2>Vamos começar com uma pergunta rápida!</h2>  
+  <h2>Vamos começar!</h2>  
   <h3 style="font-size: 1.1rem; text-align: center; margin-bottom: 20px;">
-    Qual desses problemas mais te incomoda ao tentar fazer sorvete caseiro?
+    Qual é o seu nível de experiência na cozinha?
   </h3>
   
-  <a class="option" onclick="nextQuestion('q2')">Fica duro demais, impossível de servir 🧊</a>
-  <a class="option" onclick="nextQuestion('q2')">Gosto forte de leite condensado 🥛</a>
-  <a class="option" onclick="nextQuestion('q2')">Textura granulada ou cristalizada ❄️</a>
-  <a class="option" onclick="nextQuestion('q2')">Resultado muito diferente do sorvete de sorveteria 🍦</a>
-
-  <p style="text-align: center; font-size: 0.9rem; margin-top: 20px; color: #666;">
-    Descubra como resolver todos esses problemas com métodos simples e testados!
-  </p>
+  <a class="option" onclick="nextQuestion('q2')">Não sei nem usar fouet</a>
+  <a class="option" onclick="nextQuestion('q2')">Cozinho às vezes, quando empolgo</a>
+  <a class="option" onclick="nextQuestion('q2')">Adoro testar receitas novas</a>
+  <a class="option" onclick="nextQuestion('q2')">Faço receitas quase todo dia</a>
 </div>
 
 <div id="q2" class="quiz-container">
-  <h2>Como você gostaria de se sentir ao acertar uma receita de sorvete?</h2>
-  <a class="option" onclick="nextQuestion('narrativa1')">Confiante por finalmente acertar a textura</a>
-  <a class="option" onclick="nextQuestion('narrativa1')">Aliviado por não desperdiçar ingredientes</a>
-  <a class="option" onclick="nextQuestion('narrativa1')">Feliz por fazer algo com sabor profissional</a>
-  <a class="option" onclick="nextQuestion('narrativa1')">Com vontade de testar vários novos sabores</a>
-</div>
-
-<div id="narrativa1" class="quiz-container">
-  <h2>🧊 Fazer sorvete em casa não precisa ser um tiro no escuro.</h2>
-  <img src="images/pessoa3.png" alt="Pessoa feliz com sorvete caseiro perfeito" style="display:block; margin:0 auto 22px auto; max-width:200px; border-radius:14px; box-shadow:0 4px 12px rgba(0,0,0,0.10);" />
-  <p>
-    Chega de receitas que parecem promissoras e viram decepção no freezer.
-  </p>
-  <p>
-    Você <strong>PRECISA</strong> conseguir fazer uma receita que funciona e que fique como o de uma sorveteria — de verdade.
-  </p>
-  <p>
-    <strong>Chega de perder</strong> tempo, dinheiro e ingredientes tentando receitas aleatórias da internet.
-  </p>
-  <a class="option" onclick="nextQuestion('q3')">Me mostra como!</a>
+  <h3 style="font-size: 1.1rem; text-align: center; margin-bottom: 20px;">
+    Você já tentou fazer sorvete em casa? Quais opções você tentou?
+  </h3>
+  
+  <a class="option" onclick="nextQuestion('q3')">Receita do YouTube 😩</a>
+  <a class="option" onclick="nextQuestion('q3')">Receita da embalagem do leite condensado 🤔</a>
+  <a class="option" onclick="nextQuestion('q3')">Já comprei misturas prontas 😕</a>
+  <a class="option" onclick="nextQuestion('q3')">Não, nunca tentei, mas tenho vontade 🍦</a>
 </div>
 
 <div id="q3" class="quiz-container">
-  <h2>Qual dessas conquistas te deixaria mais satisfeito ao fazer seu próprio sorvete?</h2>
-  <a class="option" onclick="nextQuestion('q4')">Conseguir um sorvete cremoso sem erro</a>
-  <a class="option" onclick="nextQuestion('q4')">Dominar uma receita que todos elogiam</a>
-  <a class="option" onclick="nextQuestion('q4')">Ter um resultado que parece de sorveteria</a>
-  <a class="option" onclick="nextQuestion('q4')">Parar de depender de receitas aleatórias da internet</a>
+  <h3>Imagine só você recebendo elogios por um sorvete caseiro feito por você. Como você se sentiria?</h3>
+  <a class="option" onclick="nextQuestion('q4')">Orgulhoso(a) e querendo repetir</a>
+  <a class="option" onclick="nextQuestion('q4')">Aliviado(a) de finalmente acertar uma receita</a>
+  <a class="option" onclick="nextQuestion('q4')">Seria incrível… mas parece impossível</a>
 </div>
 
 <div id="q4" class="quiz-container">
-  <h2>E se existisse um passo a passo prático, sem enrolação, que evita todos esses erros de uma vez por todas?</h2>
-  <a class="option" onclick="nextQuestion('q5')">Quero agora! Era tudo o que eu precisava</a>
-  <a class="option" onclick="nextQuestion('q5')">Sim! Estou cansado de tentar e errar</a>
-  <a class="option" onclick="nextQuestion('q5')">Talvez, se for simples mesmo</a>
-  <a class="option" onclick="nextQuestion('q5')">Fiquei curioso... será que funciona?</a>
+  <h3>E se eu te dissesse que você pode fazer um sorvete cremoso sem máquina, sem erro, e sem gosto de leite condensado?</h3>
+  <a class="option" onclick="nextQuestion('q5')">Eu quero muito isso!</a>
+  <a class="option" onclick="nextQuestion('q5')">Será mesmo?</a>
+  <a class="option" onclick="nextQuestion('q5')">Eu já desisti de tentar…</a>
+  <a class="option" onclick="nextQuestion('q5')">Se for simples de verdade, eu topo!</a>
 </div>
 
 <div id="q5" class="quiz-container">
-  <h2>Pra te mostrar o caminho mais direto, me diz: o que você tem aí na sua cozinha?</h2>
-  <a class="option" onclick="nextQuestion('final')">Tenho sorveteira (já tentei de tudo!)</a>
-  <a class="option" onclick="nextQuestion('final')">Só liquidificador e paciência</a>
-  <a class="option" onclick="nextQuestion('final')">Geladeira e esperança</a>
-  <a class="option" onclick="nextQuestion('final')">Ainda estou me organizando, mas quero começar</a>
+  <h2>Esse método foi criado exatamente pra quem não é chef, não tem máquina e já se frustrou antes.</h2>
+  <a class="option" onclick="nextQuestion('q6')">Agora você me pegou</a>
+  <a class="option" onclick="nextQuestion('q6')">Quero entender como funciona isso</a>
+  <a class="option" onclick="nextQuestion('q6')">Duvido, mas vou até o fim</a>
+  <a class="option" onclick="nextQuestion('q6')">Me mostra logo essa receita!</a>
+</div>
+
+<div id="q6" class="quiz-container">
+  <h3>🍦 Existe um guia simples, direto ao ponto, com dicas e receitas testadas para fazer sorvetes incríveis com o que você já tem em casa.</h3>
+
+  <div style="background: #fff0bd; padding: 20px; border-radius: 14px; margin: 25px 0; border-left: 4px solid #ffd700;">
+    <p style="line-height: 1.6; margin: 0;">
+      ✅ <strong>Técnicas pra evitar que o sorvete fique duro</strong><br>
+      ✅ <strong>Combinações fáceis</strong><br>
+      ✅ <strong>Hacks de textura e sabor</strong><br>
+      ✅ <strong>Receitas clássicas + receitas autorais</strong>
+    </p>
+  </div>
+  <a class="option" onclick="nextQuestion('final')">Se for simples de verdade, eu topo!</a>
 </div>
 
 <div id="final" class="quiz-container final">
-  <!-- Container flex para imagem e texto introdutório -->
   <div class="final-flex" style="display: flex; flex-wrap: wrap; gap: 30px; margin-bottom: 25px; align-items: center;">
-    <!-- Imagem à esquerda -->
     <div style="flex: 0 0 40%; max-width: 250px;">
       <img src="images/pessoa2.png" alt="Sorvete caseiro perfeito" style="width: 100%; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" />
     </div>
-    <!-- Texto à direita -->
     <div style="flex: 1;">
       <p style="font-size: 1.1rem; line-height: 1.6; margin-top: 0;">
         <strong>"Chega de tentativas frustradas!"</strong>
@@ -327,7 +339,6 @@
     </div>
   </div>
 
-  <!-- Destaque dos problemas resolvidos -->
   <div style="background: #FFF8F5; padding: 20px; border-radius: 14px; margin: 25px 0; border-left: 4px solid #FF6B4A;">
     <p style="line-height: 1.6; margin: 0;">
       ❌ <strong>Nunca mais</strong>: Sorvete duro como pedra<br>
@@ -337,7 +348,6 @@
     </p>
   </div>
 
-  <!-- O que o usuário vai receber -->
   <h3 style="margin: 30px 0 15px; text-align: center; color: #E74C3C;">
     O que você vai dominar com o <strong>Método Sorvete Sem Segredo</strong>:
   </h3>
@@ -357,109 +367,155 @@
     </div>
   </div>
 
- <!-- Depoimentos dos clientes -->
-  <div style="text-align: center; font-size: 0.93rem; color: #888; margin-bottom: 6px;">
-    <span style="font-size: 0.93rem;">Clique em uma foto para ler o depoimento</span>
-  </div>
-  <div id="depoimentos" style="display: flex; justify-content: center; gap: 12px; margin-bottom: 24px;">
-    <div class="depo-square" data-msg="Meu marido trabalha na sorveteria aprovou MUITO esse livro de receitas! 💖 — Ana">
-      <img src="images/cliente1.png" alt="Ana" style="width:40px; height:40px; border-radius:10px;">
+  <!-- CARROSSEL ATUALIZADO (Código 2 integrado) -->
+
+  <!-- CARROSSEL ATUALIZADO -->
+  <div id="depo-carousel">
+    <div class="depo-slide active">
+      <div class="depo-header">
+        <img src="images/cliente7.png" alt="Ana" class="depo-avatar">
+        <div class="depo-info">
+          <div class="depo-stars">⭐️⭐️⭐️⭐️⭐️</div>
+          <div class="depo-author">— Ana</div>
+        </div>
+      </div>
+      <p class="depo-text">"Meu marido trabalha em sorveteria e aprovou MUITO esse livro!"</p>
     </div>
-    <div class="depo-square" data-msg="Fiz sorvete sem sorveteira e ficou perfeito! Recomendo demais. 🍦 — João">
-      <img src="images/cliente2.png" alt="João" style="width:40px; height:40px; border-radius:10px;">
+    
+    <div class="depo-slide">
+      <div class="depo-header">
+        <img src="images/cliente2.png" alt="João" class="depo-avatar">
+        <div class="depo-info">
+          <div class="depo-stars">⭐️⭐️⭐️⭐️⭐️</div>
+          <div class="depo-author">— João</div>
+        </div>
+      </div>
+      <p class="depo-text">"Fiz sem sorveteira e ficou perfeito!"</p>
     </div>
-    <div class="depo-square" data-msg="Receitas fáceis, rápidas e deliciosas. Virou tradição aqui em casa! — Carla">
-      <img src="images/cliente3.png" alt="Carla" style="width:40px; height:40px; border-radius:10px;">
+    
+    <div class="depo-slide">
+      <div class="depo-header">
+        <img src="images/cliente3.png" alt="Carla" class="depo-avatar">
+        <div class="depo-info">
+          <div class="depo-stars">⭐️⭐️⭐️⭐️⭐️</div>
+          <div class="depo-author">— Carla</div>
+        </div>
+      </div>
+      <p class="depo-text">"Receitas fáceis, rápidas e deliciosas. Virou tradição aqui em casa!"</p>
     </div>
-    <div class="depo-square" data-msg="Nunca imaginei que seria tão simples fazer sorvete gostoso em casa. Amei! 😍 — Iara">
-      <img src="images/cliente4.png" alt="Iara" style="width:40px; height:40px; border-radius:10px;">
+
+    <div class="depo-slide">
+      <div class="depo-header">
+        <img src="images/cliente4.png" alt="Iara" class="depo-avatar">
+        <div class="depo-info">
+          <div class="depo-stars">⭐️⭐️⭐️⭐️⭐️</div>
+          <div class="depo-author">— Iara</div>
+        </div>
+      </div>
+      <p class="depo-text">"Nunca imaginei que seria tão simples fazer sorvete gostoso em casa. Amei! 😍"</p>
     </div>
-    <div class="depo-square" data-msg="Minhas crianças pedem toda semana! Virou nosso momento favorito. 👨‍👩‍👧‍👦 — Paula">
-      <img src="images/cliente5.png" alt="Paula" style="width:40px; height:40px; border-radius:10px;">
+
+    <div class="depo-slide">
+      <div class="depo-header">
+        <img src="images/cliente5.png" alt="Paula" class="depo-avatar">
+        <div class="depo-info">
+          <div class="depo-stars">⭐️⭐️⭐️⭐️⭐️</div>
+          <div class="depo-author">— Paula</div>
+        </div>
+      </div>
+      <p class="depo-text">"Minhas crianças pedem toda semana! Virou nosso momento favorito. 👨‍👩‍👧‍👦"</p>
     </div>
-    <div class="depo-square" data-msg="Comprei para eu e minha esposa fazermos com nossos filhos. Recomendo para todos! ⭐️⭐️⭐️⭐️⭐️ — Bruno">
-      <img src="images/cliente6.png" alt="Bruno" style="width:40px; height:40px; border-radius:10px;">
+
+    <div class="depo-slide">
+      <div class="depo-header">
+        <img src="images/cliente6.png" alt="Paula" class="depo-avatar">
+        <div class="depo-info">
+          <div class="depo-stars">⭐️⭐️⭐️⭐️⭐️</div>
+          <div class="depo-author">— Bruno</div>
+        </div>
+      </div>
+      <p class="depo-text">"Comprei para eu e minha esposa fazermos com nossos filhos. Recomendo para todos!👦"</p>
     </div>
-    <div class="depo-square" data-msg="O eBook me surpreendeu, receitas deliciosas e fáceis de adaptar. — Fernanda">
-      <img src="images/cliente7.png" alt="Fernanda" style="width:40px; height:40px; border-radius:10px;">
+
+       <div class="depo-slide">
+      <div class="depo-header">
+        <img src="images/cliente8.png" alt="Rafaela" class="depo-avatar">
+        <div class="depo-info">
+          <div class="depo-stars">⭐️⭐️⭐️⭐️⭐️</div>
+          <div class="depo-author">— Rafaela</div>
+        </div>
+      </div>
+      <p class="depo-text">"Agora faço sorvete até para presentear amigos. Todo mundo elogia!"</p>
     </div>
-    <div class="depo-square" data-msg="Agora faço sorvete até para presentear amigos. Todo mundo elogia! 🎁 — Rafaela">
-      <img src="images/cliente8.png" alt="Rafaela" style="width:40px; height:40px; border-radius:10px;">
+    
+    <div style="text-align: center;">
+      <button onclick="prevDepo()">◀</button>
+      <button onclick="nextDepo()">▶</button>
     </div>
-  </div>
-  <div id="depo-balao" style="display:none; max-width:320px; margin:0 auto 18px auto; background:#fff; border-radius:18px; border:2px solid var(--menta); padding:18px; box-shadow:0 2px 12px rgba(0,0,0,0.08); position:relative; text-align:center;">
-    <span id="depo-msg"></span>
-    <span onclick="document.getElementById('depo-balao').style.display='none'" style="position:absolute;top:8px;right:14px;cursor:pointer;font-weight:bold;">×</span>
   </div>
 
   <!-- CTA Urgente -->
   <div style="text-align: center; margin: 40px 0 20px;">
     <h3 style="margin-bottom: 15px;">Quanto vale para você nunca mais desperdiçar ingredientes?</h3>
-  <!-- TIMER DA OFERTA -->
-  <div id="offer-timer" style="
-      background: linear-gradient(135deg, var(--rosa) 0%, #ff6b6b 100%);
-      color: white;
-      padding: 15px;
-      border-radius: 12px;
-      text-align: center;
-      margin: 20px 0;
-      font-weight: 700;
-      font-size: 1.1rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      border: 2px solid white;
-      position: relative;
-      overflow: hidden;
-  ">
-    <div style="
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, 
-            rgba(255,255,255,0.1) 0%, 
-            rgba(255,255,255,0.3) 50%, 
-            rgba(255,255,255,0.1) 100%);
-        animation: shimmer 2s infinite;
-    "></div>
-    
-    <div style="position: relative; z-index: 2;">
-      <div style="font-size: 1.2rem; margin-bottom: 5px;">
-        ⏳ <strong>OFERTA COM DESCONTO DE 50%!</strong>
-      </div>
-      <div id="countdown" style="
-          font-size: 1.5rem;
-          font-weight: 700;
-          letter-spacing: 1px;
-          background: rgba(0,0,0,0.2);
-          padding: 8px 12px;
-          border-radius: 8px;
-          display: inline-block;
-          margin: 5px 0;
-      ">
-        02:00:00
-      </div>
-      <div style="font-size: 0.85rem;">
-        Esta oferta expira em breve! Não perca!
+    <div id="offer-timer" style="
+        background: linear-gradient(135deg, var(--rosa) 0%, #ff6b6b 100%);
+        color: white;
+        padding: 15px;
+        border-radius: 12px;
+        text-align: center;
+        margin: 20px 0;
+        font-weight: 700;
+        font-size: 1.1rem;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        border: 2px solid white;
+        position: relative;
+        overflow: hidden;
+    ">
+      <div style="
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, 
+              rgba(255,255,255,0.1) 0%, 
+              rgba(255,255,255,0.3) 50%, 
+              rgba(255,255,255,0.1) 100%);
+          animation: shimmer 2s infinite;
+      "></div>
+      
+      <div style="position: relative; z-index: 2;">
+        <div style="font-size: 1.2rem; margin-bottom: 5px;">
+          ⏳ <strong>OFERTA COM DESCONTO DE 30%!</strong>
+        </div>
+         <div style="font-size: 0.85rem;">
+          Esta oferta expira em:</div>
+        <div id="countdown" style="
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: rgba(0,0,0,0.2);
+            padding: 8px 12px;
+            border-radius: 8px;
+            display: inline-block;
+            margin: 5px 0;
+        ">
+          02:00:00
+        </div>
       </div>
     </div>
-  </div>
-  <!-- FIM DO TIMER -->
 
-    <!-- Valor do produto destacado -->
-<div style="background: #fffbe7; color: #b85c00; font-size: 1.5rem; font-weight: bold; border-radius: 14px; padding: 18px 0; margin: 30px auto 10px auto; max-width: 350px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); text-align: center; border: 2px solid #ffe2a0;">
-  🎉 <span style="font-size:1.2rem;">De <s>R$50,00</s> por apenas</span><br>
-  <span style="font-size:2.1rem; color:#ff6b00;">R$24,90</span>
-</div>
+    <div style="background: #fffbe7; color: #b85c00; font-size: 1.5rem; font-weight: bold; border-radius: 14px; padding: 18px 0; margin: 30px auto 10px auto; max-width: 350px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); text-align: center; border: 2px solid #ffe2a0;">
+      🎉 <span style="font-size:1.2rem;">De <s>R$50,00</s> por apenas</span><br>
+      <span style="font-size:2.1rem; color:#ff6b00;">R$35,00</span>
+    </div>
 
-  <!-- GARANTIA DE 7 DIAS -->
-  <div style="background: #fff8f0; border: 2px dashed #f4b183; padding: 20px; border-radius: 16px; margin-top: 30px; text-align: center; box-shadow: 0 0 8px rgba(0,0,0,0.03);">
-    <p style="font-size: 1rem; color: #7a4e27; margin: 0;">
-      💡 <strong>Garantia incondicional:</strong><br>
-      Se você não amar as receitas, devolvemos seu investimento em até <strong>7 dias</strong>, sem complicações.
-    </p>
-  </div>
-  <!-- FIM DA GARANTIA -->
+    <div style="background: #fff8f0; border: 2px dashed #f4b183; padding: 20px; border-radius: 16px; margin-top: 30px; text-align: center; box-shadow: 0 0 8px rgba(0,0,0,0.03);">
+      <p style="font-size: 1rem; color: #7a4e27; margin: 0;">
+        💡 <strong>Garantia incondicional:</strong><br>
+        Se você não amar as receitas, devolvemos seu investimento em até <strong>7 dias</strong>, sem complicações.
+      </p>
+    </div>
 
     <a class="checkout-button" href="https://pay.kirvano.com/9aa58506-88d8-4680-93c5-42ddfb8b024f" target="_blank" style="display: inline-block; background: #E74C3C; color: white; padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.1rem; box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3); margin-top:20px;">
       QUERO MEU SORVETE AGORA!
@@ -469,11 +525,8 @@
     </p>
   </div>
 
-  <!-- Botão de checkout -->
   <div style="text-align: center; margin-top: 20px;">
-          <img src="images/socialproof.png" alt="Pessoas que já compraram" style="max-width: 320px; width: 100%" />
-      </div>
-    </div>
+    <img src="images/socialproof.png" alt="Pessoas que já compraram" style="max-width: 320px; width: 100%" />
   </div>
 </div>
 
@@ -490,7 +543,6 @@
       next.classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
-      // Ativa confete se for a tela final
       if (nextId === 'final') {
         startConfetti();
       }
@@ -525,73 +577,84 @@
     if (parts.length === 2) return parts.pop().split(";").shift();
   }
 
-  // Timer com localStorage (2 horas de countdown persistente)
-  function startPersistentCountdown() {
-    const timerElement = document.getElementById('countdown');
-    const offerDuration = 2 * 60 * 60 * 1000; // 2 horas em milissegundos
-    const now = new Date().getTime();
-    let storedEndTime = localStorage.getItem('offerEndTime');
+// Timer com localStorage (7 minutos e 29 segundos PERSISTENTE)
+function startPersistentCountdown() {
+  const timerElement = document.getElementById('countdown');
+  const offerDuration = 7 * 60 * 1000 + 29 * 1000; // 7:29 em milissegundos
+  const now = new Date().getTime();
+  
+  // Verifica se já existe um timer em andamento
+  let storedEndTime = localStorage.getItem('offerEndTime');
+  
+  // Se não existir ou se já expirou, cria um novo timer
+  if (!storedEndTime || parseInt(storedEndTime) <= now) {
+    storedEndTime = now + offerDuration;
+    localStorage.setItem('offerEndTime', storedEndTime);
+  }
 
-    // Se não existe, cria e salva
-    if (!storedEndTime) {
-      storedEndTime = now + offerDuration;
-      localStorage.setItem('offerEndTime', storedEndTime);
-    }
+  const endTime = parseInt(storedEndTime);
 
-    const endTime = parseInt(storedEndTime);
+  const interval = setInterval(() => {
+    const currentTime = new Date().getTime();
+    const remainingTime = endTime - currentTime;
 
-    // Se o tempo salvo já passou, redefine
-    if (endTime <= now) {
-      localStorage.setItem('offerEndTime', now + offerDuration);
-      location.reload(); // Recarrega para sincronizar
+    if (remainingTime <= 0) {
+      clearInterval(interval);
+      timerElement.textContent = "Oferta expirada!";
+      localStorage.removeItem('offerEndTime');
       return;
     }
 
-    // Atualiza o timer a cada segundo
-    const interval = setInterval(() => {
-      const currentTime = new Date().getTime();
-      const remainingTime = endTime - currentTime;
+    const minutes = Math.floor(remainingTime / (1000 * 60));
+    const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+    
+    timerElement.textContent = 
+      `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    
+  }, 1000);
+}
 
-      if (remainingTime <= 0) {
-        clearInterval(interval);
-        timerElement.textContent = "Oferta expirada!";
-        localStorage.removeItem('offerEndTime'); // Limpa o cache
-        return;
-      }
+  // Carrossel de depoimentos (Código 2 integrado)
+  let currentDepo = 0;
+  const depoSlides = document.querySelectorAll('.depo-slide');
 
-      // Calcula horas, minutos e segundos restantes
-      const hours = Math.floor(remainingTime / (1000 * 60 * 60));
-      const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
-
-      // Formata para HH:MM:SS
-      const formattedTime = 
-        `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-      
-      timerElement.textContent = formattedTime;
-    }, 1000);
+  function showDepo(index) {
+    depoSlides.forEach((el, i) => {
+      el.classList.toggle('active', i === index);
+    });
   }
 
-  // Inicia o timer ao carregar a página
+  function nextDepo() {
+    currentDepo = (currentDepo + 1) % depoSlides.length;
+    showDepo(currentDepo);
+    resetAutoAdvance();
+  }
+
+  function prevDepo() {
+    currentDepo = (currentDepo - 1 + depoSlides.length) % depoSlides.length;
+    showDepo(currentDepo);
+    resetAutoAdvance();
+  }
+
+  // Rotação automática (pausa ao interagir)
+  let autoAdvanceInterval;
+
+  function startAutoAdvance() {
+    autoAdvanceInterval = setInterval(() => {
+      nextDepo();
+    }, 5000);
+  }
+
+  function resetAutoAdvance() {
+    clearInterval(autoAdvanceInterval);
+    startAutoAdvance();
+  }
+
+  // Inicia tudo
   document.addEventListener('DOMContentLoaded', () => {
     startPersistentCountdown();
+    startAutoAdvance();
   });
-
-  document.querySelectorAll('.depo-square').forEach(function(el) {
-  el.addEventListener('click', function() {
-    document.getElementById('depo-msg').textContent = el.getAttribute('data-msg');
-    document.getElementById('depo-balao').style.display = 'block';
-  });
-});
-
-// Deixe o depoimento da Ana aberto ao carregar a página
-window.addEventListener('DOMContentLoaded', function() {
-  var primeiroDepo = document.querySelector('.depo-square');
-  if (primeiroDepo) {
-    document.getElementById('depo-msg').textContent = primeiroDepo.getAttribute('data-msg');
-    document.getElementById('depo-balao').style.display = 'block';
-  }
-});
 </script>
 
 </body>
