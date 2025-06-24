@@ -281,21 +281,21 @@
     Qual é o seu nível de experiência na cozinha?
   </h3>
   
-  <a class="option" onclick="nextQuestion('q2')">Não sei nem usar fouet</a>
-  <a class="option" onclick="nextQuestion('q2')">Cozinho às vezes, quando empolgo</a>
-  <a class="option" onclick="nextQuestion('q2')">Adoro testar receitas novas</a>
-  <a class="option" onclick="nextQuestion('q2')">Faço receitas quase todo dia</a>
+  <a class="option" onclick="registrarResposta('Experiência na cozinha', 'Não sei nem usar fouet'); nextQuestion('q2')">Não sei nem usar fouet</a>
+  <a class="option" onclick="registrarResposta('Experiência na cozinha', 'Cozinho às vezes, quando empolgo'); nextQuestion('q2')">Cozinho às vezes, quando empolgo</a>
+  <a class="option" onclick="registrarResposta('Experiência na cozinha', 'Adoro testar receitas novas'); nextQuestion('q2')">Adoro testar receitas novas</a>
+  <a class="option" onclick="registrarResposta('Experiência na cozinha', 'Faço receitas quase todo dia'); nextQuestion('q2')">Faço receitas quase todo dia</a>
 </div>
 
 <div id="q2" class="quiz-container">
   <h3 style="font-size: 1.1rem; text-align: center; margin-bottom: 20px;">
     Você já tentou fazer sorvete em casa? Quais opções você tentou?
   </h3>
-  
-  <a class="option" onclick="nextQuestion('q3')">Receita do YouTube 😩</a>
-  <a class="option" onclick="nextQuestion('q3')">Receita da embalagem do leite condensado 🤔</a>
-  <a class="option" onclick="nextQuestion('q3')">Já comprei misturas prontas 😕</a>
-  <a class="option" onclick="nextQuestion('q3')">Não, nunca tentei, mas tenho vontade 🍦</a>
+  <a class="option" onclick="registrarResposta('Tentativa de Sorvete', 'Faço receitas quase todo dia'); nextQuestion('q2')">Faço receitas quase todo dia</a>
+  <a class="option" onclick="registrarResposta('Tentativa de Sorvete', 'Receita do YouTube 😩'); nextQuestion('q3')">Receita do YouTube 😩</a>
+  <a class="option" onclick="registrarResposta('Tentativa de Sorvete', 'Receita da embalagem do leite condensado 🤔'); nextQuestion('q3')">Receita da embalagem do leite condensado 🤔</a>
+  <a class="option" onclick="registrarResposta('Tentativa de Sorvete', 'Já comprei misturas prontas 😕'); nextQuestion('q3')">Já comprei misturas prontas 😕</a>
+  <a class="option" onclick="registrarResposta('Tentativa de Sorvete', 'Não, nunca tentei, mas tenho vontade 🍦'); nextQuestion('q3')">Não, nunca tentei, mas tenho vontade 🍦</a>
 </div>
 
 <div id="q3" class="quiz-container">
@@ -666,6 +666,18 @@ function startPersistentCountdown() {
     startPersistentCountdown();
     startAutoAdvance();
   });
+
+  const respostas = [];
+
+function registrarResposta(pergunta, resposta) {
+  respostas.push({ pergunta, resposta });
+
+  // Enviar evento para o GA4
+  gtag('event', 'resposta_quiz', {
+    question: pergunta,
+    answer: resposta
+  });
+}
 </script>
 
 </body>
