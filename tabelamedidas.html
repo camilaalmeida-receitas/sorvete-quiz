@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tabela de Medidas para Confeitaria</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-RXf+QSDCUQs6xHDnL0gW6DRfb8crV+Jz2n+eI3zrOlFgTbvKqMN3cKkOM8kGp+OZB3D3g8smcc3r8aTCIdhcg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    body {
+      font-family: 'Quicksand', sans-serif;
+      color: #4a4a4a;
+      margin: 0;
+      padding: 20px;
+    }
+
+
+    h1, h2 {
+      text-align: center;
+      color: #e26a6a;
+      margin-bottom: 25px;
+    }
+
+    h1 i, h2 i {
+      margin-right: 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 40px;
+    }
+
+    th, td {
+      padding: 14px 16px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #fddde6;
+      color: #d83e64;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    tr:nth-child(even) {
+      background-color: #fff2f6;
+    }
+
+    tr:hover {
+      background-color: #ffe7ee;
+    }
+
+    td i {
+      margin-right: 6px;
+      color: #e26a6a;
+    }
+
+    @media (max-width: 600px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+
+      thead {
+        display: none;
+      }
+
+      td {
+        position: relative;
+        padding-left: 50%;
+        margin-bottom: 10px;
+      }
+
+      td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 16px;
+        font-weight: 600;
+        color: #d83e64;
+      }
+    }
+
+    .utensilios {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 20px;
+    }
+
+    .card {
+      background-color: #fff2f6;
+      border-radius: 12px;
+      padding: 20px;
+      flex: 1 1 260px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
+
+    .card h3 {
+      color: #d83e64;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .card li {
+      margin-bottom: 6px;
+    }
+
+    .card li i {
+      color: #d83e64;
+      margin-right: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1><i class="fas fa-blender"></i>Tabela de Conversão para Confeitaria</h1>
+
+    <h2><i class="fas fa-cookie-bite"></i> Ingredientes Secos</h2>
+<table>
+  <thead>
+    <tr>
+      <th><i class="fas fa-seedling"></i> Ingrediente</th>
+      <th><i class="fas fa-mug-hot"></i> 1 xícara (240ml)</th>
+      <th><i class="fas fa-spoon"></i> 1 colher de sopa</th>
+      <th><i class="fas fa-spoon"></i> 1 colher de chá</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Ingrediente"><i class="fas fa-cube"></i> Açúcar refinado</td>
+      <td data-label="Xícara">200 g</td>
+      <td data-label="Colher sopa">15 g</td>
+      <td data-label="Colher chá">5 g</td>
+    </tr>
+    <tr>
+      <td data-label="Ingrediente"><i class="fas fa-cube"></i> Açúcar cristal</td>
+      <td data-label="Xícara">220 g</td>
+      <td data-label="Colher sopa">18 g</td>
+      <td data-label="Colher chá">6 g</td>
+    </tr>
+    <tr>
+      <td data-label="Ingrediente"><i class="fas fa-snowflake"></i> Açúcar de confeiteiro</td>
+      <td data-label="Xícara">140 g</td>
+      <td data-label="Colher sopa">10 g</td>
+      <td data-label="Colher chá">3 g</td>
+    </tr>
+    <tr>
+      <td data-label="Ingrediente"><i class="fas fa-bread-slice"></i> Farinha de trigo</td>
+      <td data-label="Xícara">120 g</td>
+      <td data-label="Colher sopa">8 g</td>
+      <td data-label="Colher chá">3 g</td>
+    </tr>
+    <tr>
+      <td data-label="Ingrediente"><i class="fas fa-snowflake"></i> Amido de milho</td>
+      <td data-label="Xícara">140 g</td>
+      <td data-label="Colher sopa">10 g</td>
+      <td data-label="Colher chá">3 g</td>
+    </tr>
+    <tr>
+      <td data-label="Ingrediente"><i class="fas fa-coconut"></i> Coco ralado</td>
+      <td data-label="Xícara">90 g</td>
+      <td data-label="Colher sopa">6 g</td>
+      <td data-label="Colher chá">2 g</td>
+    </tr>
+    <tr>
+      <td data-label="Ingrediente"><i class="fas fa-ice-cream"></i> Chocolate em pó</td>
+      <td data-label="Xícara">100 g</td>
+      <td data-label="Colher sopa">8 g</td>
+      <td data-label="Colher chá">3 g</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2><i class="fas fa-tint"></i> Ingredientes Líquidos</h2>
+<table>
+  <thead>
+    <tr>
+      <th><i class="fas fa-wine-bottle"></i> Ingrediente</th>
+      <th><i class="fas fa-mug-hot"></i> 1 xícara (240ml)</th>
+      <th><i class="fas fa-spoon"></i> 1 colher de sopa</th>
+      <th><i class="fas fa-spoon"></i> 1 colher de chá</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Ingrediente"><i class="fas fa-glass-water"></i> Leite</td>
+      <td data-label="Xícara">240 ml</td>
+      <td data-label="Colher sopa">15 ml</td>
+      <td data-label="Colher chá">5 ml</td>
+    </tr>
+    <tr>
+      <td data-label="Ingrediente"><i class="fas fa-can-food"></i> Leite condensado</td>
+      <td data-label="Xícara">310 g</td>
+      <td data-label="Colher sopa">20 g</td>
+      <td data-label="Colher chá">7 g</td>
+    </tr>
+    <tr>
+      <td data-label="Ingrediente"><i class="fas fa-whisk"></i> Creme de leite</td>
+      <td data-label="Xícara">230 g</td>
+      <td data-label="Colher sopa">15 g</td>
+      <td data-label="Colher chá">5 g</td>
+    </tr>
+    <tr>
+      <td data-label="Ingrediente"><i class="fas fa-honey-pot"></i> Mel</td>
+      <td data-label="Xícara">340 g</td>
+      <td data-label="Colher sopa">21 g</td>
+      <td data-label="Colher chá">7 g</td>
+    </tr>
+    <tr>
+      <td data-label="Ingrediente"><i class="fas fa-oil-can"></i> Óleo</td>
+      <td data-label="Xícara">220 g</td>
+      <td data-label="Colher sopa">14 g</td>
+      <td data-label="Colher chá">5 g</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2><i class="fas fa-box-open"></i> Outros Ingredientes</h2>
+<table>
+  <thead>
+    <tr>
+      <th><i class="fas fa-cookie-bite"></i> Ingrediente</th>
+      <th><i class="fas fa-mug-hot"></i> 1 xícara (240ml)</th>
+      <th><i class="fas fa-spoon"></i> 1 colher de sopa</th>
+      <th><i class="fas fa-spoon"></i> 1 colher de chá</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Ingrediente"><i class="fas fa-butter"></i> Manteiga</td>
+      <td data-label="Xícara">225 g</td>
+      <td data-label="Colher sopa">14 g</td>
+      <td data-label="Colher chá">5 g</td>
+    </tr>
+    <tr>
+      <td data-label="Ingrediente"><i class="fas fa-jar"></i> Doce de leite</td>
+      <td data-label="Xícara">320 g</td>
+      <td data-label="Colher sopa">20 g</td>
+      <td data-label="Colher chá">7 g</td>
+    </tr>
+    <tr>
+      <td data-label="Ingrediente"><i class="fas fa-cube"></i> Goiabada</td>
+      <td data-label="Xícara">300 g</td>
+      <td data-label="Colher sopa">19 g</td>
+      <td data-label="Colher chá">6 g</td>
+    </tr>
+    <tr>
+      <td data-label="Ingrediente"><i class="fas fa-chocolate-bar"></i> Chocolate picado</td>
+      <td data-label="Xícara">170 g</td>
+      <td data-label="Colher sopa">11 g</td>
+      <td data-label="Colher chá">4 g</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2><i class="fas fa-shapes"></i> Equivalência de Formas</h2>
+<table>
+  <thead>
+    <tr>
+      <th><i class="fas fa-circle-notch"></i> Tipo de Forma</th>
+      <th><i class="fas fa-ruler-horizontal"></i> Tamanho</th>
+      <th><i class="fas fa-beaker"></i> Volume</th>
+      <th><i class="fas fa-exchange-alt"></i> Equivalente</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Tipo de Forma"><i class="fas fa-circle"></i> Redonda</td>
+      <td data-label="Tamanho">20 cm</td>
+      <td data-label="Volume">1,5 L</td>
+      <td data-label="Equivalente">Quadrada 18 cm</td>
+    </tr>
+    <tr>
+      <td data-label="Tipo de Forma"><i class="fas fa-circle"></i> Redonda</td>
+      <td data-label="Tamanho">22 cm</td>
+      <td data-label="Volume">2 L</td>
+      <td data-label="Equivalente">Quadrada 20 cm</td>
+    </tr>
+    <tr>
+      <td data-label="Tipo de Forma"><i class="fas fa-circle"></i> Redonda</td>
+      <td data-label="Tamanho">26 cm</td>
+      <td data-label="Volume">3 L</td>
+      <td data-label="Equivalente">Quadrada 23 cm</td>
+    </tr>
+    <tr>
+      <td data-label="Tipo de Forma"><i class="fas fa-square"></i> Retangular</td>
+      <td data-label="Tamanho">30x20 cm</td>
+      <td data-label="Volume">3 L</td>
+      <td data-label="Equivalente">2 redondas de 20 cm</td>
+    </tr>
+    <tr>
+      <td data-label="Tipo de Forma"><i class="fas fa-circle-notch"></i> Forma de pudim</td>
+      <td data-label="Tamanho">22 cm</td>
+      <td data-label="Volume">1,8 L</td>
+      <td data-label="Equivalente">Redonda 20 cm</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2><i class="fas fa-ruler"></i> Medidas Comuns</h2>
+<table>
+  <thead>
+    <tr>
+      <th><i class="fas fa-utensils"></i> Utensílio</th>
+      <th><i class="fas fa-tint"></i> Capacidade</th>
+      <th><i class="fas fa-exchange-alt"></i> Equivalência</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Utensílio"><i class="fas fa-mug-hot"></i> Xícara de chá</td>
+      <td data-label="Capacidade">240 ml</td>
+      <td data-label="Equivalência">16 colheres de sopa</td>
+    </tr>
+    <tr>
+      <td data-label="Utensílio"><i class="fas fa-mug-hot"></i> Xícara de café</td>
+      <td data-label="Capacidade">50 ml</td>
+      <td data-label="Equivalência">3 colheres de sopa + 1 colher de chá</td>
+    </tr>
+    <tr>
+      <td data-label="Utensílio"><i class="fas fa-spoon"></i> Colher de sopa</td>
+      <td data-label="Capacidade">15 ml</td>
+      <td data-label="Equivalência">3 colheres de chá</td>
+    </tr>
+    <tr>
+      <td data-label="Utensílio"><i class="fas fa-spoon"></i> Colher de chá</td>
+      <td data-label="Capacidade">5 ml</td>
+      <td data-label="Equivalência">1/3 colher de sopa</td>
+    </tr>
+    <tr>
+      <td data-label="Utensílio"><i class="fas fa-spoon"></i> Colher de café</td>
+      <td data-label="Capacidade">2,5 ml</td>
+      <td data-label="Equivalência">1/2 colher de chá</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2><i class="fas fa-temperature-high"></i> Temperaturas do Forno</h2>
+<table>
+  <thead>
+    <tr>
+      <th><i class="fas fa-info-circle"></i> Descrição</th>
+      <th><i class="fas fa-thermometer-half"></i> Celsius (°C)</th>
+      <th><i class="fas fa-thermometer-full"></i> Fahrenheit (°F)</th>
+      <th><i class="fas fa-fire"></i> Gás (Nº)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Descrição">Muito baixo</td>
+      <td data-label="Celsius">120°C - 140°C</td>
+      <td data-label="Fahrenheit">250°F - 275°F</td>
+      <td data-label="Gás">1/2</td>
+    </tr>
+    <tr>
+      <td data-label="Descrição">Baixo</td>
+      <td data-label="Celsius">150°C - 160°C</td>
+      <td data-label="Fahrenheit">300°F - 325°F</td>
+      <td data-label="Gás">2</td>
+    </tr>
+    <tr>
+      <td data-label="Descrição">Moderado</td>
+      <td data-label="Celsius">170°C - 180°C</td>
+      <td data-label="Fahrenheit">350°F - 375°F</td>
+      <td data-label="Gás">4</td>
+    </tr>
+    <tr>
+      <td data-label="Descrição">Médio</td>
+      <td data-label="Celsius">190°C - 200°C</td>
+      <td data-label="Fahrenheit">375°F - 400°F</td>
+      <td data-label="Gás">5</td>
+    </tr>
+    <tr>
+      <td data-label="Descrição">Quente</td>
+      <td data-label="Celsius">210°C - 220°C</td>
+      <td data-label="Fahrenheit">425°F - 450°F</td>
+      <td data-label="Gás">7</td>
+    </tr>
+    <tr>
+      <td data-label="Descrição">Muito quente</td>
+      <td data-label="Celsius">230°C - 250°C</td>
+      <td data-label="Fahrenheit">450°F - 480°F</td>
+      <td data-label="Gás">9</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2><i class="fas fa-candy-cane"></i> Pontos do Açúcar</h2>
+<table>
+  <thead>
+    <tr>
+      <th><i class="fas fa-thermometer"></i> Ponto</th>
+      <th><i class="fas fa-temperature-high"></i> Temperatura</th>
+      <th><i class="fas fa-vial"></i> Teste Prático</th>
+      <th><i class="fas fa-bowl-food"></i> Uso Comum</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Ponto">Fio fraco</td>
+      <td data-label="Temperatura">100°C - 105°C</td>
+      <td data-label="Teste Prático">Forma fio que se desfaz</td>
+      <td data-label="Uso Comum">Calda para molhar bolos</td>
+    </tr>
+    <tr>
+      <td data-label="Ponto">Fio forte</td>
+      <td data-label="Temperatura">105°C - 110°C</td>
+      <td data-label="Teste Prático">Forma fio consistente</td>
+      <td data-label="Uso Comum">Compotas, geleias</td>
+    </tr>
+    <tr>
+      <td data-label="Ponto">Bala mole</td>
+      <td data-label="Temperatura">115°C - 120°C</td>
+      <td data-label="Teste Prático">Forma bola mole na água</td>
+      <td data-label="Uso Comum">Doce de leite, brigadeiro</td>
+    </tr>
+    <tr>
+      <td data-label="Ponto">Bala firme</td>
+      <td data-label="Temperatura">120°C - 130°C</td>
+      <td data-label="Teste Prático">Forma bola firme na água</td>
+      <td data-label="Uso Comum">Balas mastigáveis</td>
+    </tr>
+    <tr>
+      <td data-label="Ponto">Caramelo</td>
+      <td data-label="Temperatura">160°C - 180°C</td>
+      <td data-label="Teste Prático">Cor âmbar a marrom</td>
+      <td data-label="Uso Comum">Pudim, caramelo para decoração</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<br>
+
+<h2><i class="fas fa-utensils"></i> Utensílios de Medida</h2>
+<div class="utensilios">
+  <div class="card">
+    <h3><i class="fas fa-mug-hot"></i> Copos Medidores</h3>
+    <ul>
+      <li><i class="fas fa-check-circle"></i> 1 xícara = 240 ml</li>
+      <li><i class="fas fa-check-circle"></i> 3/4 xícara = 180 ml</li>
+      <li><i class="fas fa-check-circle"></i> 1/2 xícara = 120 ml</li>
+          <li><i class="fas fa-check-circle"></i> 1/3 xícara = 80 ml</li>
+          <li><i class="fas fa-check-circle"></i> 1/4 xícara = 60 ml</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><i class="fas fa-spoon"></i> Colheres Medidoras</h3>
+        <ul>
+          <li><i class="fas fa-check-circle"></i> 1 colher (sopa) = 15 ml</li>
+          <li><i class="fas fa-check-circle"></i> 1 colher (chá) = 5 ml</li>
+          <li><i class="fas fa-check-circle"></i> 1/2 colher (chá) = 2,5 ml</li>
+          <li><i class="fas fa-check-circle"></i> 1/4 colher (chá) = 1,25 ml</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
