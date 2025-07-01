@@ -1,17 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FEP431NG6Z"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-FEP431NG6Z');
-</script>
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sorvete sem Segredo</title>
@@ -235,6 +224,17 @@
       }
     }
   </style>
+
+  
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FEP431NG6Z"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FEP431NG6Z');
+</script>
 
   <!-- Meta Pixel Code -->
   <script>
@@ -689,6 +689,12 @@ function registrarResposta(pergunta, resposta) {
 
   // Enviar evento para o GA4
   gtag('event', 'resposta_quiz', {
+    question: pergunta,
+    answer: resposta
+  });
+
+  // Enviar evento para o Pixel do Meta
+  fbq('trackCustom', 'RespostaQuiz', {
     question: pergunta,
     answer: resposta
   });
