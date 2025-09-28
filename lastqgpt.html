@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Acesso Liberado - Seu Ebook Está Pronto!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --azul-tech: #2563eb;
+      --verde-sucesso: #10b981;
+      --roxo-criatividade: #8b5cf6;
+      --ciano: #06b6d4;
+      --cinza-claro: #f8fafc;
+      --cinza-escuro: #0f172a;
+      --destaque: #f59e0b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, var(--cinza-escuro) 0%, #1e293b 100%);
+      color: white;
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    .cyber-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      position: relative;
+    }
+
+    /* Background animado */
+    .cyber-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.1;
+    }
+
+    .grid-line {
+      position: absolute;
+      background: linear-gradient(90deg, transparent, var(--ciano), transparent);
+      animation: gridMove 20s linear infinite;
+    }
+
+    @keyframes gridMove {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    /* Header tecnológico */
+    .tech-header {
+      text-align: center;
+      padding: 40px 0;
+      position: relative;
+    }
+
+    .hologram-effect {
+      position: relative;
+      display: inline-block;
+    }
+
+    .glitch-text {
+      font-size: 3.5rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      position: relative;
+      color: white;
+      text-shadow: 
+        0 0 10px var(--ciano),
+        0 0 20px var(--ciano),
+        0 0 30px var(--ciano);
+      animation: glitch 2s infinite;
+    }
+
+    @keyframes glitch {
+      0%, 100% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+    }
+
+    .subtitle {
+      font-size: 1.4rem;
+      color: var(--ciano);
+      margin-top: 10px;
+      font-weight: 600;
+    }
+
+    /* Progresso de download */
+    .download-progress {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--ciano);
+      border-radius: 15px;
+      padding: 30px;
+      margin: 30px 0;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 30px rgba(6, 182, 212, 0.3);
+    }
+
+    .progress-container {
+      margin: 20px 0;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--ciano), var(--azul-tech));
+      border-radius: 10px;
+      width: 0%;
+      transition: width 0.5s ease-in-out;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .progress-fill::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    /* Elementos que aparecem após 100% */
+    .content-after-load {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease-in-out;
+      pointer-events: none;
+    }
+
+    .content-visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+    }
+
+    /* Cards de recursos */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin: 40px 0;
+    }
+
+    .tech-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--roxo-criatividade);
+      border-radius: 12px;
+      padding: 25px;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tech-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .tech-card:hover::before {
+      left: 100%;
+    }
+
+    .tech-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+    }
+
+    .tech-icon {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    /* Botão principal */
+    .cyber-button {
+      display: block;
+      width: 100%;
+      background: linear-gradient(135deg, var(--verde-sucesso), var(--azul-tech));
+      color: white;
+      text-decoration: none;
+      padding: 25px;
+      border-radius: 15px;
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-align: center;
+      margin: 40px 0;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .cyber-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .cyber-button:hover::before {
+      left: 100%;
+    }
+
+    .cyber-button:hover {
+      transform: scale(1.02);
+      box-shadow: 
+        0 0 30px rgba(16, 185, 129, 0.5),
+        0 0 60px rgba(37, 99, 235, 0.3);
+    }
+
+    /* Contador regressivo */
+    .countdown {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid #ef4444;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      margin: 30px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .countdown::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #ef4444, #dc2626, #ef4444);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .countdown-timer {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #ef4444;
+      margin: 10px 0;
+      text-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+    }
+
+    /* Garantia */
+    .guarantee {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid var(--verde-sucesso);
+      border-radius: 12px;
+      padding: 25px;
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    .guarantee-icon {
+      font-size: 3rem;
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    /* Mensagem de conclusão */
+    .completion-message {
+      text-align: center;
+      padding: 20px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid var(--verde-sucesso);
+      border-radius: 12px;
+      margin: 20px 0;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 0.5s ease-in-out;
+    }
+
+    .completion-visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Animações de texto */
+    .typed-text {
+      border-right: 2px solid var(--ciano);
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { border-color: var(--ciano); }
+      50% { border-color: transparent; }
+    }
+
+    /* Responsivo */
+    @media (max-width: 768px) {
+      .glitch-text {
+        font-size: 2.5rem;
+      }
+      
+      .subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .cyber-button {
+        padding: 20px;
+        font-size: 1.1rem;
+      }
+      
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="cyber-bg" id="cyberBg"></div>
+  
+  <div class="cyber-container">
+    <!-- Header -->
+    <div class="tech-header">
+      <div class="hologram-effect">
+        <h1 class="glitch-text">ACESSO LIBERADO</h1>
+      </div>
+      <p class="subtitle">Seu ebook <span class="typed-text" id="typedText"></span></p>
+    </div>
+
+    <!-- Progresso de Download -->
+    <div class="download-progress">
+      <h3 style="text-align: center; margin-bottom: 20px; color: var(--ciano);">📦 INICIALIZANDO DOWNLOAD</h3>
+      <div class="progress-container">
+        <div class="progress-label">
+          <span>Preparando conteúdo...</span>
+          <span id="progressPercent">0%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recursos (aparece após 100%) -->
+    <div class="content-after-load" id="featuresSection">
+      <div class="features-grid">
+        <div class="tech-card">
+          <span class="tech-icon">🤖</span>
+          <h4>ChatGPT como Mentor</h4>
+          <p>Aprenda a fazer as perguntas certas para obter código funcional</p>
+        </div>
+        <div class="tech-card">
+          <span class="tech-icon">⚡</span>
+          <h4>Prototipação Rápida</h4>
+          <p>Transforme ideias em protótipos em horas, não semanas</p>
+        </div>
+        <div class="tech-card">
+          <span class="tech-icon">🔧</span>
+          <h4>Automação Inteligente</h4>
+          <p>Crie scripts que automatizam tarefas repetitivas</p>
+        </div>
+        <div class="tech-card">
+          <span class="tech-icon">💼</span>
+          <h4>Soluções Lucrativas</h4>
+          <p>Desenvolva aplicativos que geram valor real</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Oferta Especial (aparece após 100%) -->
+    <div class="content-after-load" id="countdownSection">
+      <div class="countdown">
+        <h3 style="color: #ef4444; margin-bottom: 10px;">⏰ OFERTA COM DESCONTO ESPECIAL!</h3>
+        <p>Esta oferta expira em:</p>
+        <div class="countdown-timer" id="countdown">15:00</div>
+        <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; margin-top: 15px;">
+          <p style="margin: 0; font-size: 1.2rem;">
+            <strong>De <s style="color: #94a3b8;">R$ 97,00</s> por apenas</strong><br>
+            <span style="color: var(--verde-sucesso); font-size: 2rem; font-weight: 800;">R$ 47,00</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botão Principal (aparece após 100%) -->
+    <div class="content-after-load" id="buttonSection">
+      <button class="cyber-button" id="downloadBtn">
+        🚀 BAIXAR EBOOK AGORA - ACESSO IMEDIATO
+      </button>
+    </div>
+
+    <!-- Garantia (aparece após 100%) -->
+    <div class="content-after-load" id="guaranteeSection">
+      <div class="guarantee">
+        <span class="guarantee-icon">🛡️</span>
+        <h3 style="color: var(--verde-sucesso); margin-bottom: 15px;">GARANTIA INCONDICIONAL</h3>
+        <p style="font-size: 1.1rem;">
+          Se em 7 dias você achar que não vale o investimento,<br>
+          <strong>devolvemos 100% do seu dinheiro.</strong>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Background dinâmico
+    function createGrid() {
+      const cyberBg = document.getElementById('cyberBg');
+      for (let i = 0; i < 20; i++) {
+        const line = document.createElement('div');
+        line.className = 'grid-line';
+        line.style.top = `${Math.random() * 100}%`;
+        line.style.height = '1px';
+        line.style.animationDelay = `${Math.random() * 20}s`;
+        cyberBg.appendChild(line);
+      }
+    }
+
+    // Texto digitado
+    const typedTextElement = document.getElementById('typedText');
+    const texts = ['está pronto!', 'foi desbloqueado!', 'está liberado!'];
+    let textIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function typeText() {
+      const currentText = texts[textIndex];
+      
+      if (isDeleting) {
+        typedTextElement.textContent = currentText.substring(0, charIndex - 1);
+        charIndex--;
+      } else {
+        typedTextElement.textContent = currentText.substring(0, charIndex + 1);
+        charIndex++;
+      }
+
+      if (!isDeleting && charIndex === currentText.length) {
+        setTimeout(() => isDeleting = true, 2000);
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        textIndex = (textIndex + 1) % texts.length;
+      }
+
+      setTimeout(typeText, isDeleting ? 50 : 100);
+    }
+
+    // Mostrar elementos após 100%
+    function showContentAfterLoad() {
+      const elements = [
+        'completionMessage',
+        'featuresSection',
+        'countdownSection', 
+        'buttonSection',
+        'guaranteeSection'
+      ];
+
+      elements.forEach((elementId, index) => {
+        setTimeout(() => {
+          const element = document.getElementById(elementId);
+          element.classList.add('content-visible');
+        }, index * 300); // Delay escalonado
+      });
+    }
+
+    // Progresso animado
+    function animateProgress() {
+      const progressFill = document.getElementById('progressFill');
+      const progressPercent = document.getElementById('progressPercent');
+      let progress = 0;
+      
+      const interval = setInterval(() => {
+        progress += Math.random() * 8 + 2; // Progresso entre 2-10% por passo
+        if (progress >= 100) {
+          progress = 100;
+          clearInterval(interval);
+          
+          // Mostrar mensagem de conclusão e conteúdo
+          setTimeout(() => {
+            showContentAfterLoad();
+            startCountdown();
+          }, 500);
+        }
+        
+        progressFill.style.width = `${progress}%`;
+        progressPercent.textContent = `${Math.round(progress)}%`;
+      }, 300);
+    }
+
+    // Countdown
+    function startCountdown() {
+      let timeLeft = 15 * 60; // 15 minutos
+      const countdownElement = document.getElementById('countdown');
+      
+      const interval = setInterval(() => {
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        
+        countdownElement.textContent = 
+          `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        
+        if (timeLeft <= 0) {
+          clearInterval(interval);
+          countdownElement.textContent = "OFERTA EXPIRADA!";
+          countdownElement.style.color = "#94a3b8";
+        } else {
+          timeLeft--;
+        }
+      }, 1000);
+    }
+
+    // Botão de download
+    document.getElementById('downloadBtn').addEventListener('click', function() {
+      this.innerHTML = '🎉 REDIRECIONANDO PARA PAGAMENTO...';
+      this.style.background = 'linear-gradient(135deg, #f59e0b, #d97706)';
+      
+      // Simular redirecionamento (substitua pela sua URL)
+      setTimeout(() => {
+        window.location.href = '[SEU_LINK_DE_CHECKOUT]';
+      }, 2000);
+    });
+
+    // Inicializar tudo quando a página carregar
+    document.addEventListener('DOMContentLoaded', function() {
+      createGrid();
+      typeText();
+      animateProgress();
+    });
+  </script>
+</body>
+</html>

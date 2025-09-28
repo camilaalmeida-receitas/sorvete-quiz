@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Descubra Seu Potencial na Programação</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --azul-tech: #2563eb;
+      --verde-sucesso: #10b981;
+      --roxo-criatividade: #8b5cf6;
+      --cinza-claro: #f8fafc;
+      --cinza-escuro: #1e293b;
+      --destaque: #f59e0b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, var(--cinza-claro) 0%, #e2e8f0 100%);
+      color: var(--cinza-escuro);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    .header {
+      text-align: center;
+      padding: 20px 10px;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .header img {
+      max-width: 120px;
+      height: auto;
+    }
+
+    .quiz-container {
+      max-width: 600px;
+      margin: 20px auto;
+      background: white;
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      display: none;
+      opacity: 0;
+      transform: scale(0.98) translateY(20px);
+      pointer-events: none;
+      transition: all 0.5s ease;
+    }
+
+    .quiz-container.active {
+      display: block;
+      opacity: 1;
+      transform: scale(1) translateY(0);
+      pointer-events: auto;
+    }
+
+    h2 {
+      margin-bottom: 25px;
+      font-size: 1.6rem;
+      color: var(--cinza-escuro);
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      text-align: center;
+      margin-bottom: 30px;
+      color: var(--azul-tech);
+    }
+
+    .option {
+      display: block;
+      margin: 15px 0;
+      padding: 18px;
+      background: var(--cinza-claro);
+      color: var(--cinza-escuro);
+      text-align: center;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .option:hover {
+      background: var(--azul-tech);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+    }
+
+    .checkout-button {
+      background: linear-gradient(135deg, var(--verde-sucesso) 0%, var(--azul-tech) 100%);
+      padding: 18px 35px;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 25px;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+      font-size: 1.1rem;
+    }
+
+    .checkout-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin: 30px 0;
+    }
+
+    .feature-card {
+      background: var(--cinza-claro);
+      padding: 20px;
+      border-radius: 12px;
+      border-left: 4px solid var(--azul-tech);
+    }
+
+    .benefit-box {
+      background: linear-gradient(135deg, #fff9ed 0%, #fffbeb 100%);
+      padding: 25px;
+      border-radius: 16px;
+      margin: 25px 0;
+      border: 2px solid var(--destaque);
+    }
+
+    .urgency-timer {
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      color: white;
+      padding: 20px;
+      border-radius: 16px;
+      text-align: center;
+      margin: 30px 0;
+      font-weight: 700;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+    }
+
+    .ebook-preview {
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      padding: 25px;
+      border-radius: 16px;
+      margin: 25px 0;
+      border: 2px dashed var(--azul-tech);
+      text-align: center;
+    }
+
+    .preview-content {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .preview-text {
+      flex: 1;
+      min-width: 300px;
+      text-align: left;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .preview-text p {
+      margin-bottom: 12px;
+    }
+
+    .preview-highlight {
+      background: linear-gradient(135deg, var(--azul-tech) 0%, var(--roxo-criatividade) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
+    }
+
+    @media (max-width: 640px) {
+      .quiz-container {
+        margin: 10px;
+        padding: 25px 20px;
+      }
+
+      h2 {
+        font-size: 1.3rem;
+      }
+
+      .option {
+        padding: 15px;
+        font-size: 0.95rem;
+      }
+      
+      .preview-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .preview-text {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- INTRO -->
+<div id="intro" class="quiz-container active">
+  <div style="text-align: center; margin: 20px auto;">
+    <img src="images/banner1.png" alt="Transforme suas ideias em realidade" style="width: 100%; border-radius: 16px; margin-bottom: 25px;" />
+  </div>
+
+  <h2>Você já imaginou ter o <span style="color: var(--azul-tech);">poder de criar</span> qualquer aplicativo, site ou sistema que sua mente conceber?</h2>
+  
+  <p style="text-align: center; font-size: 1.1rem; margin-bottom: 30px; color: #64748b;">
+    Descubra como o ChatGPT pode ser sua <strong>arma secreta</strong> para entrar no mundo da programação e transformar suas ideias em soluções reais
+  </p>
+
+  <a class="option" onclick="nextQuestion('q1')" style="background: var(--azul-tech); color: white; font-size: 1.1rem;">
+    🚀 QUERO DESBLOQUEAR MEU POTENCIAL!
+  </a>
+
+  <p style="text-align: center; font-size: 0.9rem; margin-top: 20px; color: #94a3b8;">
+    Responda 5 perguntas rápidas e descubra seu caminho na programação
+  </p>
+</div>
+
+<!-- PERGUNTA 1 -->
+<div id="q1" class="quiz-container">
+  <h2>Como você se sente quando tem uma ideia incrível, mas não sabe como transformá-la em realidade?</h2>
+  
+  <a class="option" onclick="nextQuestion('q2')">😤 Frustrado(a) - parece que falta uma peça fundamental</a>
+  <a class="option" onclick="nextQuestion('q2')">🤔 Curioso(a) - queria saber por onde começar</a>
+  <a class="option" onclick="nextQuestion('q2')">💡 Empolgado(a) - mesmo sem saber como executar</a>
+  <a class="option" onclick="nextQuestion('q2')">😓 Sobrecarregado(a) - tantas possibilidades, tão pouco tempo</a>
+</div>
+
+<!-- PERGUNTA 2 -->
+<div id="q2" class="quiz-container">
+  <h2>Qual desses obstáculos mais te impede de criar suas soluções tecnológicas?</h2>
+  
+  <a class="option" onclick="nextQuestion('q3')">⏰ Falta de tempo para aprender programação tradicional</a>
+  <a class="option" onclick="nextQuestion('q3')">💸 Custo de cursos e ferramentas profissionais</a>
+  <a class="option" onclick="nextQuestion('q3')">🤯 Complexidade técnica parece assustadora</a>
+  <a class="option" onclick="nextQuestion('q3')">🎯 Não sei por onde começar nem qual linguagem aprender</a>
+</div>
+
+<!-- PERGUNTA 3 -->
+<div id="q3" class="quiz-container">
+  <h2>Imagine poder automatizar tarefas repetitivas do seu trabalho... O que isso representaria para você?</h2>
+  
+  <a class="option" onclick="nextQuestion('q4')">🕐 Pelo menos 2 horas livres por dia para coisas importantes</a>
+  <a class="option" onclick="nextQuestion('q4')">💪 Mais autonomia e menos dependência de terceiros</a>
+  <a class="option" onclick="nextQuestion('q4')">🚀 A chance de finalmente escalar meu negócio/ideia</a>
+  <a class="option" onclick="nextQuestion('q4')">🤑 Oportunidade de gerar renda extra com meus projetos</a>
+</div>
+
+<!-- PERGUNTA 4 - COM PREVIEW DO EBOOK -->
+<div id="q4" class="quiz-container">
+  <h2>E se você pudesse conversar com um "assistente" que te ensina programação passo a passo, explicando como um mentor pessoal?</h2>
+  
+  <div class="ebook-preview">
+    <h4 style="color: var(--azul-tech); margin-bottom: 20px;">📖 <strong>VEJA A INTRODUÇÃO DO SEU GUIA:</strong></h4>
+    
+    <div class="preview-content">
+      <div>
+        <iframe src="https://1drv.ms/b/c/adacdc64ec005f26/IQRWwWY94mF7Rb8DG-tapoToAVXI3jfbJNsPLZJZ335gacE" width="140" height="180" frameborder="0" scrolling="no" style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></iframe>
+      </div>
+      <div class="preview-text">
+        <p><span class="preview-highlight">"Do Zero às Primeiras Vendas: Transforme suas Ideias em Aplicativos, Sites e Soluções que Geram Valor"</span></p>
+    
+        
+        <p><span class="preview-highlight">A boa notícia é que a era em que você precisava ser um expert em programação para tirar essas ideias do papel ACABOU.</span></p>
+        
+        <p><strong>E o seu maior aliado nessa jornada?</strong><br>
+        <span style="color: var(--verde-sucesso); font-weight: bold;">O ChatGPT.</span></p>
+      </div>
+    </div>
+    
+    <p style="font-size: 0.9rem; color: #64748b; margin-top: 15px;">
+      <strong>Esta é apenas a introdução...</strong> Imagine o que você vai encontrar nos próximos capítulos!
+    </p>
+  </div>
+
+  <a class="option" onclick="nextQuestion('q5')">🤩 Finalmente! É exatamente o que eu preciso</a>
+  <a class="option" onclick="nextQuestion('q5')">🧐 Parece bom, mas será que funciona mesmo?</a>
+  <a class="option" onclick="nextQuestion('q5')">💭 Já tentei tantos métodos... mas esse parece diferente</a>
+  <a class="option" onclick="nextQuestion('q5')">🚀 Me mostre como isso pode mudar minha vida!</a>
+</div>
+
+<!-- PERGUNTA 5 -->
+<div id="q5" class="quiz-container">
+  <h2>Você está pronto para descobrir como o ChatGPT pode ser seu parceiro na jornada de programação?</h2>
+  
+  <a class="option" onclick="nextQuestion('final')" style="background: var(--verde-sucesso); color: white; font-size: 1.1rem;">
+    🎯 SIM, QUERO MINHA LIBERDADE CRIATIVA!
+  </a>
+  <a class="option" onclick="nextQuestion('final')">🤔 Ainda tenho dúvidas, mas quero ver</a>
+  <a class="option" onclick="nextQuestion('final')">💡 Só preciso de um empurrãozinho final</a>
+</div>
+
+<<div id="final" class="quiz-container">
+  <div style="text-align: center; padding: 60px 20px;">
+    <div style="font-size: 4rem; margin-bottom: 20px;">⏳</div>
+    <h2 style="color: var(--azul-tech); margin-bottom: 20px;">Redirecionando para sua experiência personalizada...</h2>
+    <p style="font-size: 1.1rem; color: #64748b; margin-bottom: 30px;">
+      Preparando uma experiência tecnológica incrível para você!
+    </p>
+    <div style="display: inline-block; padding: 15px 30px; background: var(--cinza-claro); border-radius: 10px; margin-top: 20px;">
+      <p style="margin: 0; font-size: 0.9rem; color: #64748b;">
+        Se o redirecionamento não funcionar automaticamente, <br>
+        <a href="lastqgpt.html" style="color: var(--azul-tech); font-weight: bold;">clique aqui</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function nextQuestion(nextId) {
+    const allContainers = document.querySelectorAll('.quiz-container');
+    allContainers.forEach(el => el.classList.remove('active'));
+
+    setTimeout(() => {
+      const next = document.getElementById(nextId);
+      next.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      if (nextId === 'final') {
+        // Redirecionar para a página lastqgpt.html após 2 segundos
+        setTimeout(() => {
+          window.location.href = 'lastqgpt.html';
+        }, 2000);
+      }
+    }, 300);
+  }
+
+  function startCountdown() {
+    let timeLeft = 15 * 60;
+    const timerElement = document.getElementById('countdown');
+
+    const interval = setInterval(() => {
+      const minutes = Math.floor(timeLeft / 60);
+      const seconds = timeLeft % 60;
+
+      timerElement.textContent = 
+        `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+      if (timeLeft <= 0) {
+        clearInterval(interval);
+        timerElement.textContent = "Oferta expirada!";
+      } else {
+        timeLeft--;
+      }
+    }, 1000);
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // Timer já inicia quando a página carrega
+  });
+</script>
+
+</body>
+</html>
