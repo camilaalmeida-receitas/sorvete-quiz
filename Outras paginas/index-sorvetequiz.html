@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sorvete sem Segredo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --rosa: #fbb1bd;
+      --menta: #b8e0d2;
+      --creme: #fff5e1;
+      --lilas: #d6c1f5;
+      --chocolate: #8b5e3c;
+      --text-dark: #3e3e3e;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--creme);
+      color: var(--text-dark);
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+      text-align: center;
+      padding: 10px;
+    }
+
+    .header img {
+      max-width: 100px;
+      height: auto;
+    }
+
+    .quiz-container {
+      max-width: 600px;
+      margin: 20px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      display: none;
+      opacity: 0;
+      transform: scale(0.98) translateY(20px);
+      pointer-events: none;
+      transition: all 0.5s ease;
+    }
+
+    .quiz-container.active {
+      display: block;
+      opacity: 1;
+      transform: scale(1) translateY(0);
+      pointer-events: auto;
+    }
+
+    h2 {
+      margin-bottom: 30px;
+      font-size: 1.5rem;
+      color: var(--chocolate);
+      text-align: center;
+    }
+
+    .option {
+      display: block;
+      margin: 12px 0;
+      padding: 15px;
+      background: var(--menta);
+      color: #333;
+      text-align: center;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.3s;
+    }
+
+    .option:hover {
+      background: var(--rosa);
+      transform: scale(1.03);
+    }
+
+    /* CARROSSEL ATUALIZADO (Código 2 integrado) */
+    .depo-slide {
+      display: none;
+      text-align: center;
+      padding: 30px 20px;
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      margin: 0 auto;
+      max-width: 600px;
+      transition: opacity 0.4s ease;
+    }
+
+    .depo-slide.active {
+      display: block;
+      opacity: 1;
+    }
+
+        .depo-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    .depo-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--menta);
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      flex-shrink: 0;
+    }
+
+    .depo-info {
+      flex-grow: 1;
+    }
+
+    .depo-stars {
+      font-size: 1.2rem;
+      color: #fbc02d;
+      letter-spacing: 2px;
+      margin-bottom: 5px;
+    }
+
+    .depo-author {
+      font-weight: bold;
+      color: var(--chocolate);
+      margin-top: 5px;
+    }
+
+    .depo-text {
+      font-style: italic;
+      line-height: 1.6;
+      text-align: left;
+      padding: 0 10px;
+    }
+
+    #depo-carousel button {
+      background: var(--menta);
+      border: none;
+      border-radius: 8px;
+      padding: 10px 18px;
+      margin: 10px 8px 0 8px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    #depo-carousel button:hover {
+      background: var(--rosa);
+    }
+
+    .final img {
+      max-width: 100%;
+      margin: 15px 0;
+      border-radius: 10px;
+    }
+
+    .checkout-button {
+      background: var(--lilas);
+      padding: 15px 25px;
+      color: var(--text-dark);
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 25px;
+      border-radius: 10px;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .checkout-button:hover {
+      background: var(--rosa);
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 640px) {
+      .quiz-container {
+        margin: 10px;
+        padding: 20px;
+      }
+
+      h2 {
+        font-size: 1.2rem;
+      }
+
+      .option {
+        padding: 12px;
+        font-size: 0.95rem;
+      }
+
+      .checkout-button {
+        padding: 12px 20px;
+        font-size: 1rem;
+      }
+    }
+
+    @keyframes shimmer {
+      0% {
+        transform: translateX(-100%);
+      }
+      100% {
+        transform: translateX(100%);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .final-flex {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .final-flex > div {
+        max-width: 100% !important;
+      }
+    }
+  </style>
+
+  
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FEP431NG6Z"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FEP431NG6Z');
+</script>
+
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1124624993037311'); 
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+         src="https://www.facebook.com/tr?id=1124624993037311&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- End Meta Pixel Code -->
+</head>
+<body>
+
+<div class="header">
+  <img src="images/logo.png" alt="Logo do Ebook" />
+</div>
+
+<div id="intro" class="quiz-container active">
+  <div style="text-align: center; margin: 30px auto;">
+    <img src="images/1.jpg" alt="Sorvete Caseiro Perfeito" style="width: 80%; border-radius: 12px;" />
+  </div>
+
+  <a class="option" onclick="nextQuestion('q1')" style="background: var(--rosa); font-size: 1.0rem; padding: 20px;">
+    QUERO DESCOBRIR AGORA! 🍦
+  </a>
+
+  <p style="text-align: center; font-size: 0.9rem; margin-top: 20px; color: #666;">
+    Responda 5 perguntas rápidas e descubra como fazer sorvetes incríveis
+  </p>
+</div>
+
+<div id="q1" class="quiz-container">
+  <h2>Vamos começar!</h2>  
+  <h3 style="font-size: 1.1rem; text-align: center; margin-bottom: 20px;">
+    Qual é o seu nível de experiência na cozinha?
+  </h3>
+  
+  <a class="option" onclick="registrarResposta('Experiência na cozinha', 'Não sei nem usar fouet'); nextQuestion('q2')">Não sei nem usar fouet</a>
+  <a class="option" onclick="registrarResposta('Experiência na cozinha', 'Cozinho às vezes, quando empolgo'); nextQuestion('q2')">Cozinho às vezes, quando empolgo</a>
+  <a class="option" onclick="registrarResposta('Experiência na cozinha', 'Adoro testar receitas novas'); nextQuestion('q2')">Adoro testar receitas novas</a>
+  <a class="option" onclick="registrarResposta('Experiência na cozinha', 'Faço receitas quase todo dia'); nextQuestion('q2')">Faço receitas quase todo dia</a>
+</div>
+
+<div id="q2" class="quiz-container">
+  <h3 style="font-size: 1.1rem; text-align: center; margin-bottom: 20px;">
+    Você já tentou fazer sorvete em casa? Quais opções você tentou?
+  </h3>
+  <a class="option" onclick="registrarResposta('Tentativa de Sorvete', 'Receita do YouTube 😩'); nextQuestion('q3')">Receita do YouTube 😩</a>
+  <a class="option" onclick="registrarResposta('Tentativa de Sorvete', 'Receita da embalagem do leite condensado 🤔'); nextQuestion('q3')">Receita da embalagem do leite condensado 🤔</a>
+  <a class="option" onclick="registrarResposta('Tentativa de Sorvete', 'Já comprei misturas prontas 😕'); nextQuestion('q3')">Já comprei misturas prontas 😕</a>
+  <a class="option" onclick="registrarResposta('Tentativa de Sorvete', 'Não, nunca tentei, mas tenho vontade 🍦'); nextQuestion('q3')">Não, nunca tentei, mas tenho vontade 🍦</a>
+</div>
+
+<div id="q3" class="quiz-container">
+  <h3>Imagine só você recebendo elogios por um sorvete caseiro feito por você. Como você se sentiria?
+  </h3>
+  <a class="option" onclick="registrarResposta('Emoção', 'Orgulhoso(a) e querendo repetir'); nextQuestion('q4')">Orgulhoso(a) e querendo repetir</a>
+  <a class="option" onclick="registrarResposta('Emoção', 'Aliviado(a) de finalmente acertar uma receita'); nextQuestion('q4')">Aliviado(a) de finalmente acertar uma receita</a>
+  <a class="option" onclick="registrarResposta('Emoção', 'Seria incrível… mas parece impossível'); nextQuestion('q4')">Seria incrível… mas parece impossível</a>
+</div>
+
+<div id="q4" class="quiz-container">
+  <h3>E se eu te dissesse que você pode fazer um sorvete cremoso sem máquina, sem erro, e sem gosto de leite condensado?</h3>
+
+  <a class="option" onclick="registrarResposta('Pergunta-chave', 'Eu quero muito isso!'); nextQuestion('q5')">Eu quero muito isso!</a>
+  <a class="option" onclick="registrarResposta('Pergunta-chave', 'Será mesmo?'); nextQuestion('q5')">Será mesmo?</a>
+  <a class="option" onclick="registrarResposta('Pergunta-chave', 'Eu já desisti de tentar…'); nextQuestion('q5')">Eu já desisti de tentar…</a>
+  <a class="option" onclick="registrarResposta('Pergunta-chave', 'Se for simples de verdade, eu topo!'); nextQuestion('q5')">Se for simples de verdade, eu topo!</a>
+</div>
+
+<div id="q5" class="quiz-container">
+  <h3>Esse método foi criado exatamente pra quem não é chef, não tem máquina e já se frustrou antes.</h3>
+
+  <a class="option" onclick="registrarResposta('Metodo', 'Agora você me pegou'); nextQuestion('q6')">Agora você me pegou</a>
+  <a class="option" onclick="registrarResposta('Metodo', 'Quero entender como funciona isso'); nextQuestion('q6')">Quero entender como funciona isso</a>
+  <a class="option" onclick="registrarResposta('Metodo', 'Duvido, mas vou até o fim'); nextQuestion('q6')">Duvido, mas vou até o fim</a>
+  <a class="option" onclick="registrarResposta('Metodo', 'Me mostra logo essa receita!'); nextQuestion('q6')">Me mostra logo essa receita!</a>
+</div>
+
+<div id="q6" class="quiz-container">
+  <h3>🍦 Existe um guia simples, direto ao ponto, com dicas e receitas testadas para fazer sorvetes incríveis com o que você já tem em casa.</h3>
+
+  <div style="background: #fff0bd; padding: 20px; border-radius: 14px; margin: 25px 0; border-left: 4px solid #ffd700;">
+    <p style="line-height: 1.6; margin: 0;">
+      ✅ <strong>Técnicas pra evitar que o sorvete fique duro</strong><br>
+      ✅ <strong>Combinações fáceis</strong><br>
+      ✅ <strong>Hacks de textura e sabor</strong><br>
+      ✅ <strong>Receitas clássicas + receitas autorais</strong>
+    </p>
+  </div>
+  <a class="option" onclick="registrarResposta('Final', 'Se for simples de verdade, eu topo!'); nextQuestion('final')">Se for simples de verdade, eu topo!</a>
+</div>
+
+<div id="final" class="quiz-container final">
+  <div class="final-flex" style="display: flex; flex-wrap: wrap; gap: 30px; margin-bottom: 25px; align-items: center;">
+    <div style="flex: 0 0 40%; max-width: 250px;">
+      <img src="images/pessoa2.png" alt="Sorvete caseiro perfeito" style="width: 100%; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" />
+    </div>
+    <div style="flex: 1;">
+      <p style="font-size: 1.1rem; line-height: 1.6; margin-top: 0;">
+        <strong>"Chega de tentativas frustradas!"</strong>
+      </p>
+      <p style="line-height: 1.6;">
+        Depois de <strong>47 receitas testadas</strong> e incontáveis frustrações no freezer, descobri o método que transforma ingredientes simples em sorvete <strong>cremoso, no ponto certo</strong> - exatamente como você merece.
+      </p>
+    </div>
+  </div>
+
+  <div style="background: #FFF8F5; padding: 20px; border-radius: 14px; margin: 25px 0; border-left: 4px solid #FF6B4A;">
+    <p style="line-height: 1.6; margin: 0;">
+      ❌ <strong>Nunca mais</strong>: Sorvete duro como pedra<br>
+      ❌ <strong>Chega</strong>: Gosto artificial de leite condensado<br>
+      ❌ <strong>Fim</strong>: Textura granulada ou aquosa<br>
+      ✅ <strong>Só</strong>: Resultado profissional na sua cozinha
+    </p>
+  </div>
+
+  <h3 style="margin: 30px 0 15px; text-align: center; color: #E74C3C;">
+    O que você vai dominar com o <strong>Método Sorvete Sem Segredo</strong>:
+  </h3>
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-bottom: 30px;">
+    <div style="background: #F9F9F9; padding: 18px; border-radius: 12px;">
+      <p style="margin: 0 0 10px; font-weight: bold;">🥄 <strong>O Segredo da Cremosidade</strong></p>
+      <p style="margin: 0; font-size: 0.9rem;">A proporção exata de ingredientes para textura perfeita (sem aditivos!)</p>
+    </div>
+    <div style="background: #F9F9F9; padding: 18px; border-radius: 12px;">
+      <p style="margin: 0 0 10px; font-weight: bold;">⏱️ <strong>Tempo Zero de Espera</strong></p>
+      <p style="margin: 0; font-size: 0.9rem;">Como servir direto do freezer sem precisar descongelar</p>
+    </div>
+    <div style="background: #F9F9F9; padding: 18px; border-radius: 12px;">
+      <p style="margin: 0 0 10px; font-weight: bold;">🧂 <strong>Balanceamento Perfeito</strong></p>
+      <p style="margin: 0; font-size: 0.9rem;">O truque para reduzir a doçura sem perder sabor</p>
+    </div>
+  </div>
+  
+  <div style= "text-align: center;">
+  <a class="checkout-button" href="https://pay.kirvano.com/9aa58506-88d8-4680-93c5-42ddfb8b024f" target="_blank" style="display: inline-block; background: #E74C3C; color: white; padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.1rem; box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3); margin-top:0px;">
+      QUERO MEU SORVETE AGORA!
+    </a>
+  </div>
+    <!-- IMAGEM COM OS BÔNUS -->
+  <h3 style="margin: 30px 0 15px; text-align: center; color: #E74C3C;">
+  E ALÉM DISSO, VOCÊ TAMBÉM RECEBERÁ <strong>3 BÔNUS EXCLUSIVOS NA SUA NA COMPRA:</strong>
+  </h3> 
+  <div style="text-align: center; margin-bottom: 30px;">
+    <img src="images/bonus.png" alt="Ebook Sorvete Sem Segredo" style="max-width: 100%; margin-top: -20px"" />
+    <img src="images/cta.jpg" alt="Ebook Sorvete Sem Segredo" style="max-width: 100%; margin-top: -20px;"/>
+
+  <!-- CARROSSEL ATUALIZADO (Código 2 integrado) -->
+
+  <!-- CARROSSEL ATUALIZADO -->
+  <div id="depo-carousel">
+    <div class="depo-slide active">
+      <div class="depo-header">
+        <img src="images/cliente7.png" alt="Ana" class="depo-avatar">
+        <div class="depo-info">
+          <div class="depo-stars">⭐️⭐️⭐️⭐️⭐️</div>
+          <div class="depo-author">— Ana</div>
+        </div>
+      </div>
+      <p class="depo-text">"Meu marido trabalha em sorveteria e aprovou MUITO esse livro!"</p>
+    </div>
+    
+    <div class="depo-slide">
+      <div class="depo-header">
+        <img src="images/cliente2.png" alt="João" class="depo-avatar">
+        <div class="depo-info">
+          <div class="depo-stars">⭐️⭐️⭐️⭐️⭐️</div>
+          <div class="depo-author">— João</div>
+        </div>
+      </div>
+      <p class="depo-text">"Fiz sem sorveteira e ficou perfeito!"</p>
+    </div>
+    
+    <div class="depo-slide">
+      <div class="depo-header">
+        <img src="images/cliente3.png" alt="Carla" class="depo-avatar">
+        <div class="depo-info">
+          <div class="depo-stars">⭐️⭐️⭐️⭐️⭐️</div>
+          <div class="depo-author">— Carla</div>
+        </div>
+      </div>
+      <p class="depo-text">"Receitas fáceis, rápidas e deliciosas. Virou tradição aqui em casa!"</p>
+    </div>
+
+    <div class="depo-slide">
+      <div class="depo-header">
+        <img src="images/cliente4.png" alt="Iara" class="depo-avatar">
+        <div class="depo-info">
+          <div class="depo-stars">⭐️⭐️⭐️⭐️⭐️</div>
+          <div class="depo-author">— Iara</div>
+        </div>
+      </div>
+      <p class="depo-text">"Nunca imaginei que seria tão simples fazer sorvete gostoso em casa. Amei! 😍"</p>
+    </div>
+
+    <div class="depo-slide">
+      <div class="depo-header">
+        <img src="images/cliente5.png" alt="Paula" class="depo-avatar">
+        <div class="depo-info">
+          <div class="depo-stars">⭐️⭐️⭐️⭐️⭐️</div>
+          <div class="depo-author">— Paula</div>
+        </div>
+      </div>
+      <p class="depo-text">"Minhas crianças pedem toda semana! Virou nosso momento favorito. 👨‍👩‍👧‍👦"</p>
+    </div>
+
+    <div class="depo-slide">
+      <div class="depo-header">
+        <img src="images/cliente6.png" alt="Paula" class="depo-avatar">
+        <div class="depo-info">
+          <div class="depo-stars">⭐️⭐️⭐️⭐️⭐️</div>
+          <div class="depo-author">— Bruno</div>
+        </div>
+      </div>
+      <p class="depo-text">"Comprei para eu e minha esposa fazermos com nossos filhos. Recomendo para todos!👦"</p>
+    </div>
+
+       <div class="depo-slide">
+      <div class="depo-header">
+        <img src="images/cliente8.png" alt="Rafaela" class="depo-avatar">
+        <div class="depo-info">
+          <div class="depo-stars">⭐️⭐️⭐️⭐️⭐️</div>
+          <div class="depo-author">— Rafaela</div>
+        </div>
+      </div>
+      <p class="depo-text">"Agora faço sorvete até para presentear amigos. Todo mundo elogia!"</p>
+    </div>
+    
+    <div style="text-align: center;">
+      <button onclick="prevDepo()">◀</button>
+      <button onclick="nextDepo()">▶</button>
+    </div>
+  </div>
+
+  <!-- CTA Urgente -->
+  <div style="text-align: center; margin: 40px 0 20px;">
+    <h3 style="margin-bottom: 15px;">Quanto vale para você nunca mais desperdiçar ingredientes?</h3>
+    <div id="offer-timer" style="
+        background: linear-gradient(135deg, var(--rosa) 0%, #ff6b6b 100%);
+        color: white;
+        padding: 15px;
+        border-radius: 12px;
+        text-align: center;
+        margin: 20px 0;
+        font-weight: 700;
+        font-size: 1.1rem;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        border: 2px solid white;
+        position: relative;
+        overflow: hidden;
+    ">
+      <div style="
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, 
+              rgba(255,255,255,0.1) 0%, 
+              rgba(255,255,255,0.3) 50%, 
+              rgba(255,255,255,0.1) 100%);
+          animation: shimmer 2s infinite;
+      "></div>
+      
+      <div style="position: relative; z-index: 2;">
+        <div style="font-size: 1.2rem; margin-bottom: 5px;">
+          ⏳ <strong>OFERTA COM DESCONTO DE 30%!</strong>
+        </div>
+         <div style="font-size: 0.85rem;">
+          Esta oferta expira em:</div>
+        <div id="countdown" style="
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: rgba(0,0,0,0.2);
+            padding: 8px 12px;
+            border-radius: 8px;
+            display: inline-block;
+            margin: 5px 0;
+        ">
+          02:00:00
+        </div>
+      </div>
+    </div>
+
+    <div style="background: #fff8f0; border: 2px dashed #f4b183; padding: 20px; border-radius: 16px; margin-top: 30px; text-align: center; box-shadow: 0 0 8px rgba(0,0,0,0.03);">
+      <p style="font-size: 1rem; color: #7a4e27; margin: 0;">
+        💡 <strong>Garantia incondicional:</strong><br>
+        Se você não amar as receitas, devolvemos seu investimento em até <strong>7 dias</strong>, sem complicações.
+      </p>
+    </div>
+
+        <div style="background: #fffbe7; color: #b85c00; font-size: 1.5rem; font-weight: bold; border-radius: 14px; padding: 18px 0; margin: 30px auto 10px auto; max-width: 350px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); text-align: center; border: 2px solid #ffe2a0;">
+      🎉 <span style="font-size:1.2rem;">De <s>R$50,00</s> por apenas</span><br>
+      <span style="font-size:2.1rem; color:#ff6b00;">R$35,00</span>
+    </div>
+    
+    <a class="checkout-button" href="https://pay.kirvano.com/9aa58506-88d8-4680-93c5-42ddfb8b024f" target="_blank" style="display: inline-block; background: #E74C3C; color: white; padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.1rem; box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3); margin-top:20px;">
+      QUERO MEU SORVETE AGORA!
+    </a>
+    <p style="font-size: 0.8rem; margin-top: 15px;">
+      ⚡ Acesso imediato via e-mail | 📱 100% digital
+    </p>
+  </div>
+
+  <div style="text-align: center; margin-top: 20px;">
+    <img src="images/socialproof.png" alt="Pessoas que já compraram" style="max-width: 320px; width: 100%" />
+  </div>
+</div>
+
+<!-- Biblioteca de Confete -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+  function nextQuestion(nextId) {
+    const allContainers = document.querySelectorAll('.quiz-container');
+    allContainers.forEach(el => el.classList.remove('active'));
+
+    setTimeout(() => {
+      const next = document.getElementById(nextId);
+      next.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      if (nextId === 'final') {
+        startConfetti();
+      }
+    }, 250);
+  }
+
+  function startConfetti() {
+    const duration = 3000;
+    const animationEnd = Date.now() + duration;
+    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 1000 };
+
+    const interval = setInterval(() => {
+      const timeLeft = animationEnd - Date.now();
+      if (timeLeft <= 0) {
+        return clearInterval(interval);
+      }
+
+      confetti({
+        ...defaults,
+        particleCount: 20,
+        origin: {
+          x: Math.random(),
+          y: Math.random() * 0.5
+        }
+      });
+    }, 250);
+  }
+
+  function getCookie(name) {
+    const value = "; " + document.cookie;
+    const parts = value.split("; " + name + "=");
+    if (parts.length === 2) return parts.pop().split(";").shift();
+  }
+
+// Timer com localStorage (7 minutos e 29 segundos PERSISTENTE)
+function startPersistentCountdown() {
+  const timerElement = document.getElementById('countdown');
+  const offerDuration = 7 * 60 * 1000 + 29 * 1000; // 7:29 em milissegundos
+  const now = new Date().getTime();
+  
+  // Verifica se já existe um timer em andamento
+  let storedEndTime = localStorage.getItem('offerEndTime');
+  
+  // Se não existir ou se já expirou, cria um novo timer
+  if (!storedEndTime || parseInt(storedEndTime) <= now) {
+    storedEndTime = now + offerDuration;
+    localStorage.setItem('offerEndTime', storedEndTime);
+  }
+
+  const endTime = parseInt(storedEndTime);
+
+  const interval = setInterval(() => {
+    const currentTime = new Date().getTime();
+    const remainingTime = endTime - currentTime;
+
+    if (remainingTime <= 0) {
+      clearInterval(interval);
+      timerElement.textContent = "Oferta expirada!";
+      localStorage.removeItem('offerEndTime');
+      return;
+    }
+
+    const minutes = Math.floor(remainingTime / (1000 * 60));
+    const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+    
+    timerElement.textContent = 
+      `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    
+  }, 1000);
+}
+
+  // Carrossel de depoimentos (Código 2 integrado)
+  let currentDepo = 0;
+  const depoSlides = document.querySelectorAll('.depo-slide');
+
+  function showDepo(index) {
+    depoSlides.forEach((el, i) => {
+      el.classList.toggle('active', i === index);
+    });
+  }
+
+  function nextDepo() {
+    currentDepo = (currentDepo + 1) % depoSlides.length;
+    showDepo(currentDepo);
+    resetAutoAdvance();
+  }
+
+  function prevDepo() {
+    currentDepo = (currentDepo - 1 + depoSlides.length) % depoSlides.length;
+    showDepo(currentDepo);
+    resetAutoAdvance();
+  }
+
+  // Rotação automática (pausa ao interagir)
+  let autoAdvanceInterval;
+
+  function startAutoAdvance() {
+    autoAdvanceInterval = setInterval(() => {
+      nextDepo();
+    }, 5000);
+  }
+
+  function resetAutoAdvance() {
+    clearInterval(autoAdvanceInterval);
+    startAutoAdvance();
+  }
+
+  // Inicia tudo
+  document.addEventListener('DOMContentLoaded', () => {
+    startPersistentCountdown();
+    startAutoAdvance();
+  });
+
+  const respostas = [];
+
+function registrarResposta(pergunta, resposta) {
+  respostas.push({ pergunta, resposta });
+
+  // Enviar evento para o GA4
+  gtag('event', 'resposta_quiz', {
+    question: pergunta,
+    answer: resposta
+  });
+
+  // Enviar evento para o Pixel do Meta
+  fbq('trackCustom', 'RespostaQuiz', {
+    question: pergunta,
+    answer: resposta
+  });
+}
+</script>
+
+</body>
+</html>
