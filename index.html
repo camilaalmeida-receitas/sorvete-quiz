@@ -463,23 +463,29 @@
       }
     }
 
-    function nextQuestion(nextId) {
-      const allContainers = document.querySelectorAll('.quiz-container');
-      allContainers.forEach(el => el.classList.remove('active'));
+  function nextQuestion(nextId) {
+    const allContainers = document.querySelectorAll('.quiz-container');
+    allContainers.forEach(el => el.classList.remove('active'));
 
-      setTimeout(() => {
-        const next = document.getElementById(nextId);
-        next.classList.add('active');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(() => {
+      const next = document.getElementById(nextId);
+      next.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
 
-        if (nextId === 'final') {
-          // Redirecionar para a página lastqgpt.html após 2 segundos
-          setTimeout(() => {
-            window.location.href = 'lastqgpt.html';
-          }, 2000);
-        }
-      }, 300);
-    }
+      // 🔥 Dispara evento no Meta Pixel
+  if (nextId.startsWith("q")) {
+    fbq('trackCustom', `Quiz_${nextId}`, { etapa: nextId });
+    console.log("Evento Pixel enviado:", `Quiz_${nextId}`);
+  }
+
+  if (nextId === 'final') {
+    fbq('track', 'Lead', { origem: 'Quiz ChatGPT' });
+    setTimeout(() => {
+      window.location.href = 'lastqgpt.html';
+    }, 2000);
+  }
+    }, 300);
+  }
 
     function startCountdown() {
       let timeLeft = 15 * 60;
